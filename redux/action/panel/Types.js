@@ -1,0 +1,11 @@
+export const SET_COLUMN = "SET_COLUMN";
+export const SET_ROW = "SET_ROW";
+export const SET_COINS = "SET_COINS";
+export const SELECTED_COIN = "SELECTED_COIN";
+export const FILTER_COIN = "FILTER_COIN";
+export const SET_CUSTOM_COIN = "SET_CUSTOM_COIN";
+export const REMOVE_CUSTOM_COIN = "REMOVE_CUSTOM_COIN";
+export const SET_COIN_FILTER_LIST = "SET_COIN_FILTER_LIST";
+export const CLEAN_FILTER_COIN = "CLEAN_FILTER_COIN";
+export const CLEAN_FILTER_COIN_LIST = "CLEAN_FILTER_COIN_LIST";
+export const CLEAN_ROW_PANEL = "CLEAN_ROW_PANEL";
