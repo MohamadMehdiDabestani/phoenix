@@ -61,7 +61,8 @@ export default async function handler(req, res) {
             password: md5(body.password),
           },
         });
-        if (user === null || user.isActive === false) {
+        // if (user === null || user.isActive === false) {
+        if (user === null) {
           result.success = false;
           result.status = 500;
           result.isValidation = true;
