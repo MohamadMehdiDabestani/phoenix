@@ -9,4 +9,4 @@ jobs:
       - name: Call our API route
         run: |
           curl --request GET \
-          --url 'https://cryptomarketwatcher.herokuapp.com/crons'
+          --url 'https://phoenixcrypto.vercel.app/api/tel'
