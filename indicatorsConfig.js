@@ -10,6 +10,8 @@ import { SsfColumn } from "./components/common/ssf/columns";
 import { BbandTsi } from "./components/common/builtStrategy/bbandTsi/columns";
 import { ThreeSuperTrend } from "./components/common/builtStrategy/threeSupertrend/columns";
 import { ThreeEma } from "./components/common/builtStrategy/threeEma/columns";
+import { DMI_OBV } from "./components/common/builtStrategy/DMI_OBV/columns";
+
 export const indicators = [
   {
     id: 1,
@@ -490,17 +492,16 @@ export const indicators = [
     parameters: [],
   },
   {
-    id: 17,
+    id: 18,
     name: "DMI_OBV",
     displayName: "استراتژی دی ام ای",
     parameters: [],
-    stopOptions: [
-      {
-        name: "atr",
-        label: "Atr",
-        isActive: true,
-      },
-    ],
+    type: "",
+    isBinding: false,
+    isBreake: false,
+    isCross: false,
+    settings: true,
+    settingsFunc: (strategy) => DMI_OBV(strategy),
   },
 ];
 export const botStrategy = [
