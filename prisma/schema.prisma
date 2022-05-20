@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["dataProxy"]
+  previewFeatures = ["dataProxy" , "filterJson"]
 }
 
 datasource db {

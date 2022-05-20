@@ -1,9 +1,12 @@
 import { Item } from "./item";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import { Fragment } from "react";
 export const Built = () => {
   const [botStrategy, setBotStrategy] = useLocalStorage("botStrategy", {}); // eslint-disable-line
+  console.log("botStrategy.listTypes" , botStrategy.listTypes.filter((l) => l.isActive == true));
   return (
     <Item label="استراتژی">
+      <Item label={`وضعیت : ${botStrategy.status ? "فعال" : "غیر فعال"}`} />
       <Item label={`تایم فریم : ${botStrategy.timeFrame}`} />
       <Item
         label={`درصد سرمایه در هر معامله : %${botStrategy.precentage.value}`}
@@ -22,11 +25,28 @@ export const Built = () => {
       <Item label={`نوع چارت : ${botStrategy.chartType}`} />
       <Item label={`بازا : ${botStrategy.market}`} />
       <Item label={`اهرم : ${botStrategy.leverage}`} />
-      <Item label={`بررسی بیت کوین برای معاملات : ${botStrategy.checkBtc ? 'فعال' : 'غیر فعال'}`} />
-      <Item label={`استفاده از فیلتر adx : ${botStrategy.adxFilter ? 'فعال' : 'غیر فعال'}`} />
+      <Item
+        label={`بررسی بیت کوین برای معاملات : ${
+          botStrategy.checkBtc ? "فعال" : "غیر فعال"
+        }`}
+      />
+      <Item
+        label={`استفاده از فیلتر adx : ${
+          botStrategy.adxFilter ? "فعال" : "غیر فعال"
+        }`}
+      />
       <Item label={`نوع خرید ها: ${botStrategy.orderType}`} />
-      <Item label={`لیست : ${botStrategy.listType}`} />
-      <Item label={`لیست سیاه : ${botStrategy.filterCoin.join(' , ')}`} />
+      {botStrategy.filterCoin.length > 0 && (
+        <Fragment>
+          <Item
+            label={`نوع لیست : ${
+              botStrategy.listTypes.find((l) => l.isActive == true).label
+            }`}
+          />
+          <Item label={`لیست : ${botStrategy.filterCoin.join(" , ")}`} />
+        </Fragment>
+      )}
+
       <Item label={botStrategy.strategy.displayName}>
         <Item label="تنظیمات">
           {botStrategy.strategy.parameters.map((parametr, idxp) => (

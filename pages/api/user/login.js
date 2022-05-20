@@ -1,10 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import md5 from "md5";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib";
 import Validator from "fastest-validator";
 import { setCookies } from "cookies-next";
-
-const prisma = new PrismaClient();
 const v = new Validator();
 function addDays(date, days) {
   date.setDate(date.getDate() + days);

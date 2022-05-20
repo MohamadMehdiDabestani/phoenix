@@ -489,6 +489,19 @@ export const indicators = [
     settingsFunc: (strategy) => ThreeEma(strategy),
     parameters: [],
   },
+  {
+    id: 17,
+    name: "DMI_OBV",
+    displayName: "استراتژی دی ام ای",
+    parameters: [],
+    stopOptions: [
+      {
+        name: "atr",
+        label: "Atr",
+        isActive: true,
+      },
+    ],
+  },
 ];
 export const botStrategy = [
   {
@@ -526,7 +539,7 @@ export const botStrategy = [
     ],
   },
   {
-    id: 3,
+    id: 2,
     name: "three_supertrend",
     displayName: "استراتژی 3 سوپرترند",
     parameters: [],
@@ -540,6 +553,19 @@ export const botStrategy = [
         name: "midline",
         label: "سوپرترند وسطی",
         isActive: false,
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "DMI_OBV",
+    displayName: "استراتژی دی ام ای",
+    parameters: [],
+    stopOptions: [
+      {
+        name: "atr",
+        label: "Atr",
+        isActive: true,
       },
     ],
   },

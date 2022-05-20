@@ -96,3 +96,9 @@ export const updateListType = (state) => {
     payload: state,
   };
 };
+export const toggleStatus = (state) => {
+  return {
+    type: type.TOGGLE_STATUS,
+    payload: state,
+  };
+};

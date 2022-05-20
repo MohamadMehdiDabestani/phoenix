@@ -22,6 +22,7 @@ export default async function handler(req, res) {
             chartType: { type: "string" },
             checkBtc: { type: "boolean" },
             market: { type: "string" },
+            status: { type: "boolean" },
             // balcList: { type: "array", items: "string" },
             orderType: { type: "string" },
             current: { type: "boolean" },
