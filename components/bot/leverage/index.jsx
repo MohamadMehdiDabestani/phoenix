@@ -8,11 +8,11 @@ export const Leverage = () => {
   return (
     <Grid
       item
-      xl={3}
-      lg={3}
-      md={3}
-      sm={6}
-      xs={6}
+      xl={6}
+      lg={6}
+      md={6}
+      sm={12}
+      xs={12}
       sx={{
         display: "flex",
         alignItems: "flex-start",

@@ -13,7 +13,6 @@ import { RadioGroup } from "./common/RadioGroup";
 import { IndicatorInput } from "./common/IndicatorInput";
 import { DashboardLayout } from "./common/layout";
 import { Supports } from "./common/Supports/";
-
 import { DialogBox } from "./common/DialogBox";
 import { StrategyComponent } from "./strategy/get";
 import { ListCoins } from "./panel/ListCoins";

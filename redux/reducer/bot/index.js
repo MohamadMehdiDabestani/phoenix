@@ -6,7 +6,6 @@ const initialState = {
   chartType: "Heikin Ashi",
   orderType: "Limit Order",
   adxFilter: true,
-  status: true,
   listTypes: [
     {
       name: "blackList",
@@ -120,10 +119,6 @@ export const botReducer = (state = initialState, action) => {
         break;
       case types.UPDATE_ORDER_TYPE:
         draft.orderType = action.payload;
-        break;
-      case types.TOGGLE_STATUS:
-        
-        draft.status = action.payload;
         break;
       case types.UPDATE_STOPLOSS:
         draft.strategy.stopOptions.find(

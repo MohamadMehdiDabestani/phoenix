@@ -38,4 +38,4 @@ yarn-error.log*
 
 # primsa
 
-/prisma/migrations/20220520161120_init
+/prisma/migrations

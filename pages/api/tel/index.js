@@ -13,10 +13,7 @@ export default async function handler(req, res) {
       // const users = await prisma.user.findMany();
       const users = await prisma.user.findMany({
         where: {
-          botStrategy: {
-            path: ["status"],
-            equals: true,
-          },
+          botStatus: true,
         },
         select: {
           botStrategy: true,
@@ -52,8 +49,7 @@ ${longs.join("")}`;
             );
           text = `${text} سیگنال های فروش : 
 ${shorts.join("")}`;
-        }
-        else {
+        } else {
           text = `${text}موردی برای فروش وجود ندارد
 `;
         }

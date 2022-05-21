@@ -23,7 +23,6 @@ import { BlackListInput } from "./blackList/input";
 import { BlackList } from "./blackList/list";
 import { Leverage } from "./leverage";
 import { Built } from "./built";
-import { Status } from "./status";
 export const BotComponent = ({ timeframes, url }) => {
   const { postHandeled } = useApi({ base: url });
   const dispatch = useDispatch();
@@ -57,7 +56,6 @@ export const BotComponent = ({ timeframes, url }) => {
         <CheckBtc />
         <AdxFilter />
         <Leverage />
-        <Status />
         <ListType />
         <BlackListInput />
         <BlackList />

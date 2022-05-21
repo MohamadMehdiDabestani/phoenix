@@ -22,7 +22,6 @@ export default async function handler(req, res) {
             chartType: { type: "string" },
             checkBtc: { type: "boolean" },
             market: { type: "string" },
-            status: { type: "boolean" },
             // balcList: { type: "array", items: "string" },
             orderType: { type: "string" },
             current: { type: "boolean" },
@@ -51,7 +50,6 @@ export default async function handler(req, res) {
       } else {
         const exchangeClient = getCookie("exchange", { req, res });
         const exchange = new ccxt[exchangeClient]();
-        console.log(exchange);
         // hasCreateLimitOrder: true,
         // hasCreateMarketOrder: true,
         // hasCreateOrder: true,
@@ -62,6 +60,7 @@ export default async function handler(req, res) {
             },
             data: {
               botStrategy: body.bot,
+              botStatus: true,
             },
           });
         } else {
