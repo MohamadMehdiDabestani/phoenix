@@ -52,7 +52,9 @@ export async function getServerSideProps({ req, res }) {
       )
         return e;
     });
-    console.log(Object.keys(exchange.markets));
+    if (exchangeClient == "bybit") {
+      coins.map((c) => `${c}:USDT`);
+    }
     return {
       props: {
         apiUrl: process.env.analyzer,
