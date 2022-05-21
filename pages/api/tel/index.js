@@ -19,12 +19,12 @@ export default async function handler(req, res) {
           botStrategy: true,
         },
       });
-      const exchange = new ccxt.bybit({ enableRateLimit: true });
       const usdt = /^\w+\/USDT/;
       const down = /^\w+DOWN+\/USDT/;
       const up = /^\w+UP+\/USDT/;
       const bear = /^\w+BEAR+\/USDT/;
       const bull = /^\w+BULL+\/USDT/;
+      const exchange = new ccxt.bybit();
       const data = await exchange.loadMarkets();
       const coins = Object.keys(data).filter((e) => {
         if (
@@ -36,25 +36,18 @@ export default async function handler(req, res) {
         )
           return e;
       });
-      console.log("coins", coins);
       users.map(async (u) => {
         console.log(`url sent : ${process.env.analyzer}/openTrade`);
-        const analysis = [];
-        let time = "";
-        coins.map(async (coin) => {
-          const result = await axios.post(`${process.env.analyzer}/openTrade`, {
-            strategy: u.botStrategy,
-            coin,
-          });
-          analysis.push(result.data.signal);
-          time = result.data.time;
-          console.log("result", result.status);
-          console.log("result statusText", result.statusText);
+        const result = await axios.post(`${process.env.analyzer}/openTrade`, {
+          strategy: u.botStrategy,
+          coins,
         });
-        let text = `تحلیل تاریخ : ${time.replace("T", " ")}
+        console.log("result", result.status);
+        console.log("result statusText", result.statusText);
+        let text = `تحلیل تاریخ : ${result.data.time.replace("T", " ")}
       `;
-        if (analysis.filter((s) => s.long).length > 0) {
-          const longs = analysis
+        if (result.data.signals.filter((s) => s.long).length > 0) {
+          const longs = result.data.signals
             .filter((s) => s.long)
             .map(
               (l) => `ارز : ${l.coin} - نقطه ی ورود : ${l.entry}
@@ -67,8 +60,8 @@ export default async function handler(req, res) {
           text = `${text}موردی برای خرید وجود ندارد
       `;
         }
-        if (analysis.filter((s) => s.short).length > 0) {
-          const shorts = analysis
+        if (result.data.signals.filter((s) => s.short).length > 0) {
+          const shorts = result.data.signals
             .filter((s) => s.short)
             .map(
               (l) => `ارز : ${l.coin} - نقطه ی ورود : ${l.entry}
