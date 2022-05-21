@@ -1,7 +1,7 @@
 // https://github.com/yagop/node-telegram-bot-api/issues/319#issuecomment-324963294
 // Fixes an error with Promise cancellation
 process.env.NTBA_FIX_319 = "test";
-
+import ccxt from "ccxt";
 import { prisma } from "@/lib";
 import axios from "axios";
 import TelegramBot from "node-telegram-bot-api";
@@ -19,43 +19,59 @@ export default async function handler(req, res) {
           botStrategy: true,
         },
       });
-      console.log('users' , users);
+      const ex = new ccxt.bybit({ enableRateLimit: true });
+      const usdt = /^\w+\/USDT/;
+      const down = /^\w+DOWN+\/USDT/;
+      const up = /^\w+UP+\/USDT/;
+      const bear = /^\w+BEAR+\/USDT/;
+      const bull = /^\w+BULL+\/USDT/;
+      const exchange = new ccxt.bybit();
+      const data = await exchange.loadMarkets();
+      const coins = ["EOS/USDT", "ETH/USDT", "XRP/USDT"];
+      console.log("coins", coins);
       users.map(async (u) => {
         console.log(`url sent : ${process.env.analyzer}/openTrade`);
-        const result = await axios.post(`${process.env.analyzer}/openTrade`, {
-          strategy: u.botStrategy,
+        const analysis = [];
+        let time = "";
+        coins.map(async (coin) => {
+          const result = await axios.post(`${process.env.analyzer}/openTrade`, {
+            strategy: u.botStrategy,
+            coin,
+          });
+          analysis.push(result.data.signal);
+          time = result.data.time;
+          console.log("result", result.status);
+          console.log("result statusText", result.statusText);
         });
-        console.log("result" , result.status);
-        console.log("result statusText" , result.statusText);
-        let text = `تحلیل تاریخ : ${result.data.time.replace("T", " ")}
-`;
-        if (result.data.signals.filter((s) => s.long).length > 0) {
-          const longs = result.data.signals
+        let text = `تحلیل تاریخ : ${time.replace("T", " ")}
+      `;
+        if (analysis.filter((s) => s.long).length > 0) {
+          const longs = analysis
             .filter((s) => s.long)
             .map(
               (l) => `ارز : ${l.coin} - نقطه ی ورود : ${l.entry}
-----------------------------------------------------
-`
+      ----------------------------------------------------
+      `
             );
-          text = `${text} سیگنال های خرید : 
-${longs.join("")}`;
+          text = `${text} سیگنال های خرید :
+      ${longs.join("")}`;
         } else {
           text = `${text}موردی برای خرید وجود ندارد
-`;
+      `;
         }
-        if (result.data.signals.filter((s) => s.short).length > 0) {
-          const shorts = result.data.signals
+        if (analysis.filter((s) => s.short).length > 0) {
+          const shorts = analysis
             .filter((s) => s.short)
             .map(
               (l) => `ارز : ${l.coin} - نقطه ی ورود : ${l.entry}
-----------------------------------------------------
-`
+      ----------------------------------------------------
+      `
             );
-          text = `${text} سیگنال های فروش : 
-${shorts.join("")}`;
+          text = `${text} سیگنال های فروش :
+      ${shorts.join("")}`;
         } else {
           text = `${text}موردی برای فروش وجود ندارد
-`;
+      `;
         }
         await bot.sendMessage(808254824, text);
       });
