@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         },
       });
       console.log('users' , users);
-      console.log(`url sent : ${process.env.analyzer}/openTrade`);
+      console.log(`url sent : ${process.env.analyzer}openTrade`);
       users.map(async (u) => {
         const result = await axios.post(`${process.env.analyzer}/openTrade`, {
           strategy: u.botStrategy,
