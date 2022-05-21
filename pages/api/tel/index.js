@@ -9,7 +9,7 @@ import TelegramBot from "node-telegram-bot-api";
 export default async function handler(req, res) {
   const { method } = req;
   const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
-  await bot.sendMessage(808254824, "a cronJob done 3");
+  await bot.sendMessage(808254824, "a cronJob done 1");
   if (method === "GET") {
     try {
       // const users = await prisma.user.findMany();
