@@ -4,12 +4,14 @@ process.env.NTBA_FIX_319 = "test";
 import ccxt from "ccxt";
 import { prisma } from "@/lib";
 import axios from "axios";
+import TelegramBot from "node-telegram-bot-api";
 
 export default async function handler(req, res) {
   const { method } = req;
   if (method === "GET") {
     try {
       // const users = await prisma.user.findMany();
+      const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
       const users = await prisma.user.findMany({
         where: {
           botStatus: true,
@@ -25,16 +27,7 @@ export default async function handler(req, res) {
       const bull = /^\w+BULL+\/USDT/;
       const exchange = new ccxt.bybit();
       const data = await exchange.loadMarkets();
-      const coins = Object.keys(data).filter((e) => {
-        if (
-          usdt.test(e) &&
-          !down.test(e) &&
-          !up.test(e) &&
-          !bear.test(e) &&
-          !bull.test(e)
-        )
-          return e;
-      });
+      const coins = ['XTZ/USDT' , 'YFI/USDT' , 'ADA/USDT']
       users.map((u) => {
         console.log(`url sent : ${process.env.analyzer}/openTrade`);
         axios
@@ -42,7 +35,8 @@ export default async function handler(req, res) {
             strategy: u.botStrategy,
             coins,
           })
-          .then((result) => {
+          .then(async (result) => {
+            await bot.sendMessage(808254824, "a cronJob done");
             console.log("result", result.status);
             console.log("result statusText", result.statusText);
           });
