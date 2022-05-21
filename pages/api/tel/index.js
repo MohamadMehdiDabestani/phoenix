@@ -27,7 +27,16 @@ export default async function handler(req, res) {
       const bull = /^\w+BULL+\/USDT/;
       const exchange = new ccxt.bybit();
       const data = await exchange.loadMarkets();
-      const coins = ["EOS/USDT", "ETH/USDT", "XRP/USDT"];
+      const coins = Object.keys(data).filter((e) => {
+        if (
+          usdt.test(e) &&
+          !down.test(e) &&
+          !up.test(e) &&
+          !bear.test(e) &&
+          !bull.test(e)
+        )
+          return e;
+      });
       console.log("coins", coins);
       users.map(async (u) => {
         console.log(`url sent : ${process.env.analyzer}/openTrade`);
