@@ -19,6 +19,7 @@ export default async function handler(req, res) {
           botStrategy: true,
         },
       });
+      console.log('users' , users);
       users.map(async (u) => {
         const result = await axios.post(`${process.env.analyzer}/openTrade`, {
           strategy: u.botStrategy,
