@@ -19,13 +19,12 @@ export default async function handler(req, res) {
           botStrategy: true,
         },
       });
-      const ex = new ccxt.bybit({ enableRateLimit: true });
+      const exchange = new ccxt.bybit({ enableRateLimit: true });
       const usdt = /^\w+\/USDT/;
       const down = /^\w+DOWN+\/USDT/;
       const up = /^\w+UP+\/USDT/;
       const bear = /^\w+BEAR+\/USDT/;
       const bull = /^\w+BULL+\/USDT/;
-      const exchange = new ccxt.bybit();
       const data = await exchange.loadMarkets();
       const coins = Object.keys(data).filter((e) => {
         if (
