@@ -8,10 +8,11 @@ import TelegramBot from "node-telegram-bot-api";
 
 export default async function handler(req, res) {
   const { method } = req;
+  const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
+  await bot.sendMessage(808254824, "a cronJob done 3");
   if (method === "GET") {
     try {
       // const users = await prisma.user.findMany();
-      const bot = new TelegramBot(process.env.TELEGRAM_TOKEN);
       const users = await prisma.user.findMany({
         where: {
           botStatus: true,
@@ -27,7 +28,16 @@ export default async function handler(req, res) {
       const bull = /^\w+BULL+\/USDT/;
       const exchange = new ccxt.bybit();
       const data = await exchange.loadMarkets();
-      const coins = ['XTZ/USDT' , 'YFI/USDT' , 'ADA/USDT']
+      const coins = Object.keys(data).filter((e) => {
+        if (
+          usdt.test(e) &&
+          !down.test(e) &&
+          !up.test(e) &&
+          !bear.test(e) &&
+          !bull.test(e)
+        )
+          return e;
+      });
       users.map((u) => {
         console.log(`url sent : ${process.env.analyzer}/openTrade`);
         axios
@@ -36,11 +46,12 @@ export default async function handler(req, res) {
             coins,
           })
           .then(async (result) => {
-            await bot.sendMessage(808254824, "a cronJob done");
+            await bot.sendMessage(808254824, "a cronJob done 2");
             console.log("result", result.status);
             console.log("result statusText", result.statusText);
           });
       });
+      await bot.sendMessage(808254824, "a cronJob done 3");
       res.status(200).json({ success: true });
     } catch (err) {
       console.log(err);
