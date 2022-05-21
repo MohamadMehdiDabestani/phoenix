@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migration": "npx prisma migrate dev --preview-feature"
+    "migration": "npx prisma migrate dev --preview-feature",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@emotion/react": "^11.8.1",
