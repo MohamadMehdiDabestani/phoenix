@@ -20,10 +20,13 @@ export default async function handler(req, res) {
         },
       });
       console.log('users' , users);
+      console.log(`url sent : ${process.env.analyzer}/openTrade`);
       users.map(async (u) => {
         const result = await axios.post(`${process.env.analyzer}/openTrade`, {
           strategy: u.botStrategy,
         });
+        console.log("result" , result.status);
+        console.log("result statusText" , result.statusText);
         let text = `تحلیل تاریخ : ${result.data.time.replace("T", " ")}
 `;
         if (result.data.signals.filter((s) => s.long).length > 0) {
