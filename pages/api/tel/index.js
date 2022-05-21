@@ -35,14 +35,17 @@ export default async function handler(req, res) {
         )
           return e;
       });
-      users.map(async (u) => {
+      users.map((u) => {
         console.log(`url sent : ${process.env.analyzer}/openTrade`);
-        const result = await axios.post(`${process.env.analyzer}/openTrade`, {
-          strategy: u.botStrategy,
-          coins,
-        });
-        console.log("result", result.status);
-        console.log("result statusText", result.statusText);
+        axios
+          .post(`${process.env.analyzer}/openTrade`, {
+            strategy: u.botStrategy,
+            coins,
+          })
+          .then((result) => {
+            console.log("result", result.status);
+            console.log("result statusText", result.statusText);
+          });
       });
       res.status(200).json({ success: true });
     } catch (err) {

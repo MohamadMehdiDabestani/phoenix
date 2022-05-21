@@ -234,7 +234,7 @@ export const GridAnalysis = ({ apiUrl, isCustomCoins, nexUrl }) => {
       });
     });
   }, [customCoin]);
-  console.log("filterCoin", filterCoin);
+  console.log("coluns", columns);
   if (show) return <Loading />;
   return (
     <Fragment>
