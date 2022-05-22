@@ -39,19 +39,14 @@ export default async function handler(req, res) {
           return e;
       });
       console.log(users);
-      users.map((u) => {
+      users.map(async (u) => {
         console.log(`url sent : ${process.env.analyzer}/openTrade`);
-        axios
-          .post(`${process.env.analyzer}/openTrade`, {
-            strategy: u.botStrategy,
-            coins,
-          })
-          .then(async (result) => {
-            await bot.sendMessage(808254824, "a cronJob done 2");
-            console.log("result", result.status);
-            console.log("result statusText", result.statusText);
-          })
-          .catch((e) => console.log("err", e));
+        const res = await axios.post(`${process.env.analyzer}/openTrade`, {
+          strategy: u.botStrategy,
+          coins,
+        });
+        console.log("result", res.status);
+        console.log("result statusText", res.statusText);
       });
       await bot.sendMessage(808254824, "a cronJob done 3");
       res.status(200).json({ success: true });
