@@ -38,6 +38,7 @@ export default async function handler(req, res) {
         )
           return e;
       });
+      console.log(users);
       users.map((u) => {
         console.log(`url sent : ${process.env.analyzer}/openTrade`);
         axios
@@ -49,7 +50,8 @@ export default async function handler(req, res) {
             await bot.sendMessage(808254824, "a cronJob done 2");
             console.log("result", result.status);
             console.log("result statusText", result.statusText);
-          });
+          })
+          .catch((e) => console.log("err", e));
       });
       await bot.sendMessage(808254824, "a cronJob done 3");
       res.status(200).json({ success: true });
