@@ -1,10 +1,10 @@
 // https://github.com/yagop/node-telegram-bot-api/issues/319#issuecomment-324963294
 // Fixes an error with Promise cancellation
 process.env.NTBA_FIX_319 = "test";
+import TelegramBot from "node-telegram-bot-api";
 import ccxt from "ccxt";
 import { prisma } from "@/lib";
 import axios from "axios";
-import TelegramBot from "node-telegram-bot-api";
 
 export default async function handler(req, res) {
   const { method } = req;
