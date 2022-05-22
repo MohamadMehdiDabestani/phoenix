@@ -590,4 +590,23 @@ export const botStrategy = [
       },
     ],
   },
+  {
+    id: 4,
+    name: "EMA",
+    displayName: "استراتژی ای ام ای",
+    parameters: [
+      {
+        name: "length",
+        value: 20,
+        label: "طول",
+      },
+    ],
+    stopOptions: [
+      {
+        name: "atr",
+        label: "Atr",
+        isActive: true,
+      },
+    ],
+  },
 ];
