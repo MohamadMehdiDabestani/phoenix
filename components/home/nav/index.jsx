@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 const links = [
   { label: "توضیحات", to: "#intro" },
   { label: "پلن ها", to: "#planes" },
+  { label: "سوالات متداول", to: "#faq" },
   { label: "شروع", to: "#strat" },
 ];
 

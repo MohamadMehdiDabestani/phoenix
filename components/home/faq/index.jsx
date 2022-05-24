@@ -60,7 +60,7 @@ export const Faq = ({ items }) => {
           overflowX: "hidden",
         }}
       >
-        <Typography variant="h4" sx={{ margin: "20px 0" }}>
+        <Typography variant="h4" sx={{ margin: "25px 0" }}>
           سوالات متداول
         </Typography>
         <Box sx={{ marginBottom: "20px" }}>

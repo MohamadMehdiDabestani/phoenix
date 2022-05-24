@@ -12,6 +12,8 @@ import { ThreeSuperTrend } from "./components/common/builtStrategy/threeSupertre
 import { ThreeEma } from "./components/common/builtStrategy/threeEma/columns";
 import { DMI_OBV } from "./components/common/builtStrategy/DMI_OBV/columns";
 import { DMI } from "./components/common/builtStrategy/DMI/columns";
+import { VwapComponent } from "./components/common/vwap";
+import { VwapColumns } from "./components/common/vwap/column";
 
 export const indicators = [
   {
@@ -457,6 +459,59 @@ export const indicators = [
     ],
   },
   {
+    id: 19,
+    name: "DMI",
+    displayName: "دی ام ای",
+    parameters: [
+      {
+        name: "length",
+        value: 14,
+        label: "طول",
+      },
+    ],
+    type: "",
+    isBinding: false,
+    isBreake: false,
+    isCross: false,
+    settings: true,
+    isEnableCross: true,
+    settingsFunc: (strategy) => DMI(strategy),
+  },
+  {
+    id: 20,
+    type: "moving",
+    isBinding: true,
+    component: <VwapComponent />,
+    name: "vwap",
+    displayName: "Vwap",
+    isBreake: true,
+    isCross: false,
+    isEnableCross: false,
+    isEnableBreake: true,
+    settings: [
+      {
+        name: "precentageDifferent",
+        value: 2,
+        label: "درصد اختلاف با قیمت",
+      },
+    ],
+    settingsFunc: (strategy) => VwapColumns(strategy),
+    breake: {
+      type: "line",
+      line: 0,
+      area: [0, 0],
+      offset: 0,
+      side: "upwards",
+    },
+    parameters: [
+      {
+        name: "length",
+        value: 25,
+        label: "طول",
+      },
+    ],
+  },
+  {
     id: 15,
     type: "",
     isBinding: false,
@@ -503,25 +558,6 @@ export const indicators = [
     isCross: false,
     settings: true,
     settingsFunc: (strategy) => DMI_OBV(strategy),
-  },
-  {
-    id: 19,
-    name: "DMI",
-    displayName: "اندیکاتور دی ام ای",
-    parameters: [
-      {
-        name: "length",
-        value: 14,
-        label: "طول",
-      },
-    ],
-    type: "",
-    isBinding: false,
-    isBreake: false,
-    isCross: false,
-    settings: true,
-    isEnableCross: true,
-    settingsFunc: (strategy) => DMI(strategy),
   },
 ];
 export const botStrategy = [

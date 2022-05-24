@@ -116,6 +116,7 @@ const Home = ({ faqItems }) => {
                   </Typography>
                 </Grid>
                 <HomeTable />
+                <Faq items={faqItems}/>
 
                 <InfoSection
                   gridId="strat"
@@ -133,7 +134,6 @@ const Home = ({ faqItems }) => {
                   image="/image/undraw_maker_launch_re_rq81.svg"
                   altImage="get start in crypto phoenix"
                 />
-                <Faq items={faqItems}/>
               </Fragment>
             ) : (
               <Fragment>
@@ -198,7 +198,7 @@ const Home = ({ faqItems }) => {
                   </Typography>
                 </Grid>
                 <HomeTable />
-
+                <Faq items={faqItems} />
                 <ImageSection
                   image="/image/undraw_maker_launch_re_rq81.svg"
                   altImage="get start in crypto phoenix"
@@ -215,7 +215,6 @@ const Home = ({ faqItems }) => {
                     </Button>
                   </Link>
                 </InfoSection>
-                <Faq items={faqItems} />
               </Fragment>
             )}
           </Grid>
