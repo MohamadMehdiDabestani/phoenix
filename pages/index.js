@@ -13,15 +13,13 @@ import {
 import { useDispatch } from "react-redux";
 import { withoutLayout } from "@/redux/action/Actions";
 import { blueGrey } from "@mui/material/colors";
-
 import Link from "next/link";
-import { HomeTable, Nav } from "@/components";
+import { Faq, HomeTable, Nav } from "@/components";
 import CopyrightIcon from "@mui/icons-material/Copyright";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { InfoSection } from "@/components";
 import { ImageSection } from "@/components";
-const Home = ({ data }) => {
-  console.log(data);
+const Home = ({ faqItems }) => {
   const dispatch = useDispatch();
   const matches = useMediaQuery((theme) => theme.breakpoints.up("md"));
 
@@ -64,7 +62,7 @@ const Home = ({ data }) => {
                       marginTop: "20px",
                     }}
                   >
-                    <Link href="/summary">
+                    <Link href="/panel/getstart">
                       <Button variant="contained">شروع به کار</Button>
                     </Link>
                     <Button
@@ -125,7 +123,7 @@ const Home = ({ data }) => {
               تحلیل و ترید کنید"
                   title="شروع به کار در کریپتو ققنوس کنید"
                 >
-                  <Link href="/summary">
+                  <Link href="/panel/getstart">
                     <Button variant="contained" sx={{ marginTop: "20px" }}>
                       شروع به کار
                     </Button>
@@ -135,6 +133,7 @@ const Home = ({ data }) => {
                   image="/image/undraw_maker_launch_re_rq81.svg"
                   altImage="get start in crypto phoenix"
                 />
+                <Faq items={faqItems}/>
               </Fragment>
             ) : (
               <Fragment>
@@ -149,7 +148,7 @@ const Home = ({ data }) => {
                   title="کریپتو ققنوس سامانه جامع تحلیل گر بازار کریپتوکارنسی"
                 >
                   <Box sx={{ marginTop: "20px" }}>
-                    <Link href="/panel">
+                    <Link href="/panel/getstart">
                       <Button variant="contained">شروع به کار</Button>
                     </Link>
                     <Button
@@ -210,12 +209,13 @@ const Home = ({ data }) => {
               تحلیل و ترید کنید"
                   title="شروع به کار در کریپتو ققنوس کنید"
                 >
-                  <Link href="/summary">
+                  <Link href="/panel/getstart">
                     <Button variant="contained" sx={{ marginTop: "20px" }}>
                       شروع به کار
                     </Button>
                   </Link>
                 </InfoSection>
+                <Faq items={faqItems} />
               </Fragment>
             )}
           </Grid>
@@ -245,7 +245,38 @@ const Home = ({ data }) => {
 export function getStaticProps() {
   return {
     props: {
-      data: process.env.NEXT_JS_URI_API,
+      faqItems: [
+        {
+          title: "وظیفه ی این ابزار چیه؟",
+          description:
+            "این ابزار جز فیلتر کردن بازار بر اساس استراتژی شما رو نداره . فایده اش اینه که بازار به این بزرگی رو تبدیل به چند ارز محدود بکنه تا شما تمرکز خودتون رو روی این چند ارز بکنید در نتیجه گرفتن سود از بازار راحت و بیشتر میشود",
+        },
+        {
+          title: "چه قدر به ما سود میده؟",
+          description:
+            "این سوال رو کسایی میپرسن که با این سامانه کار نکرده باشن . این ابزار نه به شما سود نه ضرر بلکه فقط وظیفه داره بازار رو بر اساس استراتژی شما فیلتر کنه و بازار به این بزرگی رو تبدیل کنه به چند ارز انگشت شمار و تصمیم نهایی خرید یا فروش رو خودتون بگیرین",
+        },
+        {
+          title: "چرا نباید با آی پی ایرانی وارد شویم؟",
+          description:
+            "چون که سرور های ما نسبت به آی پی ایرانی حساس هستن اما نسبت به تغییر آی پی یک کاربر حساس نیست و در ضمن چون که سرور های ما با صرافی کار میکنند پس آی پی شما به صرافی ارسال نمیشه و صرفا آی پی سرور های ما در صرافی ثبت میشود",
+        },
+        {
+          title: "چرا استفاده ی از سایت رایگان است؟",
+          description:
+            "بخش هایی از سایت فعلا در دست ساخت و توسعه می باشد به همین دلیل رایگان است اما بخش تحلیل کننده ی بازار تکمیل شده و قابل استفاده هست",
+        },
+        {
+          title: "پیش نیاز های استفاده از این سامانه چیه؟",
+          description:
+            "اول از همه شما باید خودتان هم توان تحلیل داشته باشید چون که به هر حال تصمیم نهایی را خودتان میگیرید بعد توانایی استفاده از این سامانه را دارید",
+        },
+        {
+          title: "از چه صرافی هایی می توانم استفاده کنم؟",
+          description:
+            "ما تقریبا تمامی صرافی های مطرح دنیا را پشتیبانی میکنیم . نظیر بایننس , کوکوین , اف تی ایکس , کوین بیس , کراکن , هوبی , بیت فینکس و کوینکس به همراه کلی صرافی دیگر",
+        },
+      ],
     },
   };
 }

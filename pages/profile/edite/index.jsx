@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { EditeProfileDialogBox } from "@/components";
+import { EditeProfileDialogBox, Loading } from "@/components";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {
@@ -18,10 +18,12 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { InputForm } from "@/components";
 import ccxt from "ccxt";
-import { setCookies, getCookie } from "cookies-next";
+import { setCookies, getCookie, removeCookies } from "cookies-next";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleDialog, toggleSnackBar } from "@/redux/action/Actions";
+import { toggleLoading, toggleSnackBar } from "@/redux/action/Actions";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { useApi } from "@/hooks/useApi";
 const items = [
   {
     label: "نام کاربری",
@@ -36,9 +38,11 @@ const items = [
     type: "text",
   },
 ];
-const Edite = (props) => {
+const Edite = ({ user, nexUrl, list }) => {
+  const { postHandeled } = useApi({ baseUrl: nexUrl });
   const router = useRouter();
   const dispatch = useDispatch();
+  const userData = JSON.parse(user);
   useEffect(() => {
     if (router.query.notif) {
       dispatch(
@@ -61,8 +65,8 @@ const Edite = (props) => {
   });
   const formik = useFormik({
     initialValues: {
-      email: "",
-      userName: "",
+      email: userData.email,
+      userName: userData.userName,
       exchange: getCookie("exchange"),
     },
     validationSchema: validationHandler,
@@ -70,6 +74,28 @@ const Edite = (props) => {
       const dateTime = new Date();
       dateTime.setFullYear(dateTime.getFullYear() + 10);
       setCookies("exchange", values.exchange, { expires: dateTime });
+      console.log(userData.userName);
+      if (
+        userData.email !== values.email ||
+        userData.userName !== values.userName
+      ) {
+        dispatch(toggleLoading({ show: true, isGlobal: true }));
+        postHandeled(
+          "/user/edite",
+          values,
+          () => {
+            dispatch(
+              toggleSnackBar({
+                message: "حساب کاربری شما به روز رسانی شد",
+                show: true,
+              })
+            );
+          },
+          () => {
+            dispatch(toggleLoading({ show: false, isGlobal: false }));
+          }
+        );
+      }
     },
   });
   const handleChangeExchange = (e) => {
@@ -81,8 +107,9 @@ const Edite = (props) => {
   console.log("open", formik.values.exchange);
   return (
     <Paper sx={{ padding: "20px" }}>
+      <Loading />
       {formik.values.exchange && open ? (
-        <EditeProfileDialogBox url={props.nexUrl} />
+        <EditeProfileDialogBox url={nexUrl} />
       ) : (
         ""
       )}
@@ -94,14 +121,14 @@ const Edite = (props) => {
         }}
       >
         <Typography>ویرایش حساب کاربری</Typography>
-        {formik.values.exchange && (
+        {/* {formik.values.exchange && (
           <Button
             variant="contained"
             onClick={() => dispatch(toggleDialog(true))}
           >
             احراز هویت صرافی
           </Button>
-        )}
+        )} */}
       </Box>
       <Box sx={{ margin: "35px 0" }} as="form" onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
@@ -135,7 +162,7 @@ const Edite = (props) => {
                   formik.handleChange(e), handleChangeExchange(e);
                 }}
               >
-                {props.list.map((e, idx) => (
+                {list.map((e, idx) => (
                   <MenuItem key={idx} value={e}>
                     {e}
                   </MenuItem>
@@ -159,12 +186,45 @@ const Edite = (props) => {
     </Paper>
   );
 };
-export async function getStaticProps() {
-  return {
-    props: {
-      list: ccxt.exchanges,
-      nexUrl: process.env.NEXT_JS_URI_API,
-    },
-  };
+export async function getServerSideProps({ req, res }) {
+  try {
+    const cookie = getCookie("authentication_scanner", { req, res });
+    if (!cookie) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+      };
+    }
+    const { data } = await axios.post(`${process.env.NEXT_JS_URI_API}/user`, {
+      cookieValue: cookie,
+    });
+    if (data.data) {
+      return {
+        props: {
+          user: JSON.stringify(data.data),
+          nexUrl: process.env.NEXT_JS_URI_API,
+          list: ccxt.exchanges,
+        },
+      };
+    } else {
+      removeCookies("authentication_scanner", { req, res });
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login?notif=true",
+        },
+      };
+    }
+  } catch {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/badRequest",
+      },
+    };
+  }
 }
+
 export default Edite;

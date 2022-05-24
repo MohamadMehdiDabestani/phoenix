@@ -1,5 +1,5 @@
 import { checkCookies } from "cookies-next";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import Image from "next/image";
@@ -18,6 +18,7 @@ import {
   toggleSnackBar,
   withoutLayout,
 } from "@/redux/action/Actions";
+import Head from "next/head";
 
 const items = [
   {
@@ -34,10 +35,20 @@ const items = [
   },
 ];
 const Login = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const { show } = useSelector((state) => state.loading);
   useEffect(() => {
     dispatch(withoutLayout(true));
+    if (router.query.notif) {
+      dispatch(
+        toggleSnackBar({
+          message: "وارد حسابتان شوید",
+          show: true,
+          severity: "error",
+        })
+      );
+    }
     return function cleanUp() {
       dispatch(withoutLayout(false));
     };
@@ -75,7 +86,7 @@ const Login = () => {
               show: true,
             })
           );
-          Router.push("/panel");
+          Router.push("/panel/getstart");
         },
         () => {
           dispatch(toggleLoading({ show: false, isGlobal: false }));
@@ -85,6 +96,9 @@ const Login = () => {
   });
   return (
     <Grid container sx={{ height: "100%" }}>
+      <Head>
+        <title>کریپتو ققنوس | ورود به سایت کریپتو ققنوس</title>
+      </Head>
       {show && <Loading />}
       <Grid
         item

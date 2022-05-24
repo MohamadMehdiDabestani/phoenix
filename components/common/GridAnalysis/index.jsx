@@ -22,7 +22,12 @@ import {
 import { getCookie } from "cookies-next";
 import { toggleDialog } from "@/redux/action/Actions";
 import { DialogBoxGrid } from "./DialogBox";
-export const GridAnalysis = ({ apiUrl, isCustomCoins, nexUrl }) => {
+export const GridAnalysis = ({
+  apiUrl,
+  isCustomCoins,
+  nexUrl,
+  loadingProps,
+}) => {
   const { postHandeled } = useApi({ baseUrl: apiUrl });
   const [page, setPage] = useState(0);
   const { columns, rows, coins, filterCoin, customCoin, selectedCoin } =
@@ -80,7 +85,11 @@ export const GridAnalysis = ({ apiUrl, isCustomCoins, nexUrl }) => {
       );
       Router.push("/strategy");
     } else {
-      dispatch(toggleLoading({ show: true, isGlobal: true }));
+      if (loadingProps) {
+        dispatch(toggleLoading(loadingProps));
+      }else {
+        dispatch(toggleLoading({ show: true, isGlobal: true }));
+      }
       let names = [];
       console.log("strategy.indicators", strategy.indicators);
       strategy.indicators
@@ -226,7 +235,11 @@ export const GridAnalysis = ({ apiUrl, isCustomCoins, nexUrl }) => {
     };
   }, []);
   useEffect(() => {
-    dispatch(toggleLoading({ show: true, isGlobal: true }));
+    if (loadingProps) {
+      dispatch(toggleLoading(loadingProps));
+    }else {
+      dispatch(toggleLoading({ show: true, isGlobal: true }));
+    }
     customCoin.slice(0, 6).map((coin) => {
       postHandeled("/analzer", { strategy, exchange, coin }, ({ data }) => {
         dispatch(setFilterCoin(JSON.parse(data)));

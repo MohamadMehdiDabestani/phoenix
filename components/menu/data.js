@@ -5,7 +5,7 @@ const list = [
   {
     id: "1",
     codeName: "",
-    routes: "/home,/strategy,/strategy/add,/panel,/filter,/bot",
+    routes: "/panel,/panel/strategy/add,/panel/filter,/panel/bot",
     title: "بازار",
     icon: <AttachMoneyIcon sx={{ marginRight: "5%" }} />,
     list: [
@@ -15,18 +15,18 @@ const list = [
         title: "تحلیل ها",
       },
       {
-        href: "/filter",
-        activeRoute: "/filter",
+        href: "/panel/filter",
+        activeRoute: "/panel/filter",
         title: "فیلتر",
       },
       {
-        href: "/bot",
-        activeRoute: "/bot",
+        href: "/panel/bot",
+        activeRoute: "/panel/bot",
         title: "ربات",
       },
       {
-        href: "/strategy",
-        activeRoute: "/strategy,/strategy/add",
+        href: "/panel/strategy/add",
+        activeRoute: "/panel/strategy/add",
         title: "استراتژی",
       },
     ],

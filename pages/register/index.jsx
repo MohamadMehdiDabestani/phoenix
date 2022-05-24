@@ -17,6 +17,7 @@ import {
   withoutLayout,
 } from "@/redux/action/Actions";
 import { useDispatch, useSelector } from "react-redux";
+import Head from "next/head";
 const items = [
   {
     label: "نام کاربری",
@@ -92,6 +93,9 @@ const Register = () => {
   });
   return (
     <Grid container sx={{ height: "100%" }}>
+      <Head>
+        <title>کریپتو ققنوس | ثبت نام در سایت کریپتو ققنوس</title>
+      </Head>
       {show && <Loading />}
       <Grid
         item

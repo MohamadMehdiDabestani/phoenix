@@ -57,7 +57,7 @@ export default async function handler(req, res) {
         result.status = 500;
         result.isValidation = true;
       } else {
-        var user = await prisma.user.findUnique({
+        const user = await prisma.user.findUnique({
           where: {
             email: body.email.toLowerCase(),
           },

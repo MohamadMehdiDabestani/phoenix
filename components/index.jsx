@@ -14,7 +14,7 @@ import { IndicatorInput } from "./common/IndicatorInput";
 import { DashboardLayout } from "./common/layout";
 import { Supports } from "./common/Supports/";
 import { DialogBox } from "./common/DialogBox";
-import { StrategyComponent } from "./strategy/get";
+
 import { ListCoins } from "./panel/ListCoins";
 import { MultipleSelect } from "./common/MultipleSelect";
 import { UserInfo } from "./profile/userInfo";
@@ -29,7 +29,9 @@ import { ImageSection } from "./home/section/image";
 import { InfoSection } from "./home/section/info";
 import { BotComponent } from "./bot";
 import { EditeProfileDialogBox } from "./profile/editeProfileDialogBox";
+import { Faq } from "./home/faq";
 export {
+  Faq,
   EditeProfileDialogBox,
   BotComponent,
   Nav,
@@ -44,7 +46,6 @@ export {
   UserInfo,
   MultipleSelect,
   ListCoins,
-  StrategyComponent,
   DialogBox,
   HomeIconTopLeft,
   InputForm,

@@ -34,17 +34,22 @@ export const FilterComponent = ({ apiUrl, nexUrl }) => {
           )}
         </Grid>
       </Paper>
-      {Object.keys(coins).length == 0 ? (
-        <Paper sx={{ marginTop: "20px", padding: "20px" }}>
+      <Paper sx={{ marginTop: "20px", padding: "20px" , position: "relative" }}>
+        {Object.keys(coins).length == 0 ? (
           <Alert severity="info">
             ابتدا ارز هایی برای فیلتر کردن انتخاب کنید .
           </Alert>
-        </Paper>
-      ) : (
-        <Box marginTop="20px">
-          <GridAnalysis apiUrl={apiUrl} nexUrl={nexUrl} isCustomCoins={true} />
-        </Box>
-      )}
+        ) : (
+          <Box marginTop="20px">
+            <GridAnalysis
+              apiUrl={apiUrl}
+              nexUrl={nexUrl}
+              isCustomCoins={true}
+              loadingProps={{ show: true, isGlobal: false }}
+            />
+          </Box>
+        )}
+      </Paper>
     </Fragment>
   );
 };

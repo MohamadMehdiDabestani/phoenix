@@ -19,20 +19,20 @@ export const InfoSection = ({ title, text, children, gridId }) => {
       <Box
         sx={{
           width: "100%",
-          height: matches ? "70vh" : "30vh",
+          minHeight: matches ? "70vh" : "30vh",
           display: "flex",
           flexDirection: "column",
           alignItems: matches ? "baseline" : "center",
           justifyContent: matches ? "center" : "flex-start",
           marginTop: matches ? "0" : "15px",
           textAlign: matches ? "left" : "center",
+          overflowX: "hidden",
         }}
       >
-        <Typography variant="h4" sx={{ marginTop: matches ? "0" : "20px" }}>{title}</Typography>
-        <Typography
-          variant="body1"
-          sx={{ marginTop: "10px" }}
-        >
+        <Typography variant="h4" sx={{ marginTop: matches ? "0" : "20px" }}>
+          {title}
+        </Typography>
+        <Typography variant="body1" sx={{ marginTop: "10px" }}>
           {text}
         </Typography>
         {children}

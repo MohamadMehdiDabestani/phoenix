@@ -1,17 +1,21 @@
-import { BotComponent } from "@/components";
+// import { BotComponent } from "@/components";
 import ccxt from "ccxt";
-import { Paper } from "@mui/material";
+import { Alert, Paper } from "@mui/material";
 import { getCookie } from "cookies-next";
 import Head from "next/head";
 
 const Bot = (props) => {
+  console.log(props);
   return (
     <Paper sx={{ padding: "20px" }}>
       <Head>
         <title>کریپتو ققنوس | ربات معامله گر کریپتو ققنوس</title>
         <meta name="description" content="ربات معامله گر و سود آور قدرتمند ایرانی در بازار جهانی رمزارز ها" />
       </Head>
-      <BotComponent timeframes={JSON.parse(props.timeFrames)} url={props.url} />
+      {/* <BotComponent timeframes={JSON.parse(props.timeFrames)} url={props.url} /> */}
+      <Alert severity="error">
+        این قسمت از سایت در دست توسعه می باشد
+      </Alert>
     </Paper>
   );
 };
