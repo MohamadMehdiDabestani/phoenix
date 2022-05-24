@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Alert, Box, Button, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { toggleDialog } from "@/redux/action/Actions";
@@ -46,29 +45,13 @@ export const List = () => {
                   marginTop: "25px",
                 }}
               >
-                <Alert
-                  sx={{ flexGrow: 1 }}
-                  severity={combineList.length === 0 ? "info" : "error"}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      a: { color: "rgb(30, 58, 102)", fontWeight: "bold" },
-                    }}
-                  >
-                    {combineList.length === 0 ? (
-                      <Fragment>
-                        شما تا کنون هیچ اندیکاتور مکملی تعریف نکرده اید
-                      </Fragment>
-                    ) : (
-                      <Fragment>
-                        شما توانایی تنظیم بیش از 1 اندیکاتور در یک استراتژی را
-                        ندارید . در صورت نیاز می توانید اقدام به خرید {""}
-                        <Link href="/plane">پلن</Link> کنید
-                      </Fragment>
-                    )}
-                  </Typography>
-                </Alert>
+                {combineList.length === 0 && (
+                  <Alert sx={{ flexGrow: 1 }} severity={"info"}>
+                    <Typography variant="body2">
+                      شما تا کنون هیچ اندیکاتور مکملی تعریف نکرده اید
+                    </Typography>
+                  </Alert>
+                )}
                 <Button
                   onClick={() => handleDialog(el.id)}
                   variant="contained"
