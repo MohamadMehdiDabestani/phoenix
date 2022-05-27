@@ -5,16 +5,19 @@ import { useSelector } from "react-redux";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import useLocalStorage from "@/hooks/useLocalStorage";
 export const List = () => {
-  const { customCoin , currentCoinList } = useSelector((state) => state.panel);
+  const { customCoin, currentCoinList } = useSelector((state) => state.panel);
   const dispatch = useDispatch();
   const [coins, setCoins] = useLocalStorage("coins", []); // eslint-disable-line
 
-  const handle = (index,coinName) => {
-    const list = coins[currentCoinList].value.split(',').filter((c) => c !== coinName).join(',');
-    setCoins(coins[currentCoinList].value = list);
+  const handle = (index, coinName) => {
+    const list = coins[currentCoinList].value
+      .split(",")
+      .filter((c) => c !== coinName)
+      .join(",");
+    coins[currentCoinList].value = list;
+    setCoins(coins);
     dispatch(removeCustomCoin(index));
   };
-  console.log("customCoin" , customCoin);
   return (
     <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
       {customCoin.map((e, idx) => (
@@ -23,8 +26,8 @@ export const List = () => {
             icon={<HighlightOffIcon />}
             sx={{ margin: "5px 5px", cursor: "pointer" }}
             size="small"
-            label={e.replaceAll(" " , '')}
-            onClick={() => handle(idx , e.replaceAll(" " , ''))}
+            label={e.replaceAll(" ", "")}
+            onClick={() => handle(idx, e.replaceAll(" ", ""))}
           />
         </Tooltip>
       ))}

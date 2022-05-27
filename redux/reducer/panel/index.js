@@ -47,6 +47,7 @@ export const panelReducer = (state = initialState, action) => {
         const columns = [];
         action.payload.names.map((el) => {
           columns.push({
+            headerClassName: "rtl-column",
             field: el.field,
             headerName: el.label,
             width: 250,
@@ -92,6 +93,7 @@ export const panelReducer = (state = initialState, action) => {
         });
         columns.push({
           field: "action",
+          headerClassName: "rtl-column",
           headerName: "عملیات",
           width: 170,
           sortable: false,
@@ -153,6 +155,7 @@ export const panelReducer = (state = initialState, action) => {
           { field: "id", hide: true, filterable: false, hideable: false },
           {
             field: "coinName",
+            headerClassName: "rtl-column",
             headerName: "نام ارز",
             width: 120,
           },
@@ -164,7 +167,11 @@ export const panelReducer = (state = initialState, action) => {
           (e) => e.coinName === action.payload.coinName
         );
         if (!existing) {
-          draft.rows.push({ id: draft.rows.length, ...action.payload });
+          draft.rows.push({
+            id: draft.rows.length,
+            
+            ...action.payload,
+          });
         }
         break;
       }

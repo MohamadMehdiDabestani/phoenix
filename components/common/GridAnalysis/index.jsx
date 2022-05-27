@@ -87,7 +87,7 @@ export const GridAnalysis = ({
     } else {
       if (loadingProps) {
         dispatch(toggleLoading(loadingProps));
-      }else {
+      } else {
         dispatch(toggleLoading({ show: true, isGlobal: true }));
       }
       let names = [];
@@ -237,7 +237,7 @@ export const GridAnalysis = ({
   useEffect(() => {
     if (loadingProps) {
       dispatch(toggleLoading(loadingProps));
-    }else {
+    } else {
       dispatch(toggleLoading({ show: true, isGlobal: true }));
     }
     customCoin.slice(0, 6).map((coin) => {
@@ -256,6 +256,7 @@ export const GridAnalysis = ({
       )}
       <Paper dir="ltr">
         <DataGrid
+          className="==============================================="
           sx={{
             border: "none",
             "& .MuiDataGrid-cell": {
@@ -271,9 +272,8 @@ export const GridAnalysis = ({
               },
             },
             "& .rtl-column": {
-              "&>div>div": {
-                justifyContent: "flex-end",
-              },
+              justifyContent: "flex-end",
+              direction: "ltr",
             },
           }}
           initialState={{
