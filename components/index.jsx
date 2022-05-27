@@ -30,7 +30,9 @@ import { InfoSection } from "./home/section/info";
 import { BotComponent } from "./bot";
 import { EditeProfileDialogBox } from "./profile/editeProfileDialogBox";
 import { Faq } from "./home/faq";
+import { BlogCard } from "./blog/card";
 export {
+  BlogCard,
   Faq,
   EditeProfileDialogBox,
   BotComponent,

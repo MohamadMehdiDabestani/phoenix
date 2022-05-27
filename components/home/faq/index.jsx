@@ -58,7 +58,7 @@ export const Faq = ({ items }) => {
           marginTop: matches ? "0" : "15px",
           textAlign: matches ? "left" : "center",
           overflowX: "hidden",
-          paddingLeft: "15px",
+          paddingLeft: matches ? "15px" : "0",
         }}
       >
         <Typography variant="h4" sx={{ margin: "25px 0" }}>

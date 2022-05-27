@@ -56,19 +56,14 @@ const list = [
   },
   {
     id: "3",
-    routes: "/blog",
+    routes: "/panel/blog",
     title: "بلاگ",
     icon: <RssFeedIcon sx={{ marginRight: "5%" }} />,
     list: [
       {
-        href: "/story",
-        title: "کوتاه و مفید",
-        activeRoute: "/story",
-      },
-      {
-        href: "/tutorial",
-        activeRoute: "/tutorial",
-        title: "آموزش",
+        href: "/panel/blog",
+        activeRoute: "/panel/blog",
+        title: "پست ها",
       },
     ],
   },

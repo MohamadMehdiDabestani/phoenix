@@ -11,6 +11,7 @@
     "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.12.1",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.2.5",
@@ -23,6 +24,7 @@
     "apexcharts": "^3.35.0",
     "axios": "^0.25.0",
     "ccxt": "^1.73.96",
+    "contentful": "^9.1.29",
     "cookies-next": "^2.0.4",
     "fastest-validator": "^1.12.0",
     "formik": "^2.2.9",
