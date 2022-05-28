@@ -4,14 +4,13 @@ import {
   Card,
   CardActions,
   CardContent,
-
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
 export const BlogCard = ({ post }) => {
-  const { image, title, slug, shortText } = post;
+  const { image, title, slug, shortText, objectFit } = post;
   return (
     <Card>
       <Box
@@ -20,7 +19,7 @@ export const BlogCard = ({ post }) => {
             width: "100% !important",
             height: "250px !important",
             position: "unset !important",
-            objectFit: "cover",
+            objectFit: objectFit ? "cover" : "unset",
           },
           "& >span": {
             position: "unset !important",
