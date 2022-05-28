@@ -9,7 +9,6 @@ import { toggleSnackBar } from "@/redux/action/Actions";
 const Panel = ({ apiUrl, coins, nexUrl, error }) => {
   const dispatch = useDispatch();
   if (error) {
-    console.log("if");
     dispatch(
       toggleSnackBar({
         message: "ابتدا یک صرافی انتخاب کنید",

@@ -82,7 +82,6 @@ export async function getStaticProps({ params }) {
     content_type: "cryptoTool",
     "fields.slug": params.slug,
   });
-  console.log("items", items);
   if (!items.length) {
     return {
       redirect: {

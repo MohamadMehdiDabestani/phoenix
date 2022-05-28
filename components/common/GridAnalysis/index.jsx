@@ -83,7 +83,7 @@ export const GridAnalysis = ({
           show: true,
         })
       );
-      Router.push("/strategy");
+      Router.push("/panel/strategy/add");
     } else {
       if (loadingProps) {
         dispatch(toggleLoading(loadingProps));

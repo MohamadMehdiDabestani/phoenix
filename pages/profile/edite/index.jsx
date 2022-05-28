@@ -83,17 +83,16 @@ const Edite = ({ user, nexUrl, list }) => {
         postHandeled(
           "/user/edite",
           values,
-          () => {
-            dispatch(
-              toggleSnackBar({
-                message: "حساب کاربری شما به روز رسانی شد",
-                show: true,
-              })
-            );
-          },
+          () => {},
           () => {
             dispatch(toggleLoading({ show: false, isGlobal: false }));
           }
+        );
+        dispatch(
+          toggleSnackBar({
+            message: "حساب کاربری شما به روز رسانی شد",
+            show: true,
+          })
         );
       }
     },
