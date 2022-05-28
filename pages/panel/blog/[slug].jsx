@@ -20,11 +20,20 @@ const Post = ({ post }) => {
     dispatch(toggleLoading({ show: true, isGlobal: true }));
     return <Loading />;
   } else {
-    const { title, image, text, list, objectFit , altImage , pageTitle , description , keywords } = post.fields;
+    const {
+      title,
+      image,
+      text,
+      list,
+      objectFit,
+      altImage,
+      pageTitle,
+      description,
+      keywords,
+    } = post.fields;
     const renderedOption = {
       renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
-          console.log('node ' , node);
           return (
             <Box
               sx={{
@@ -42,7 +51,7 @@ const Post = ({ post }) => {
               }}
             >
               <Image
-                src={`https://${node.data.target.fields.file.url}`}
+                src={`https:${node.data.target.fields.file.url}`}
                 className="img"
                 layout="fill"
                 alt={node.data.target.fields.description}
@@ -57,8 +66,8 @@ const Post = ({ post }) => {
       <Paper sx={{ padding: "20px" }}>
         <Head>
           <title>کریپتو ققنوس | {pageTitle}</title>
-          <meta name="description" content={description}/>
-          <meta name="keywords" content={keywords}/>
+          <meta name="description" content={description} />
+          <meta name="keywords" content={keywords} />
         </Head>
         <Typography variant="h4" component="h1" sx={{ marginBottom: "20px" }}>
           {title}
