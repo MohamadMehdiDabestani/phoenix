@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { toggleLoading } from "@/redux/action/Actions";
 import { Loading } from "@/components";
 import { BLOCKS } from "@contentful/rich-text-types";
+import Head from "next/head";
 const client = createClient({
   space: process.env.CONTENTFULL_SPACEID,
   accessToken: process.env.CONTENTFULL_ACCESSKEY,
@@ -19,9 +20,11 @@ const Post = ({ post }) => {
     dispatch(toggleLoading({ show: true, isGlobal: true }));
     return <Loading />;
   } else {
+    const { title, image, text, list, objectFit , altImage , pageTitle , description , keywords } = post.fields;
     const renderedOption = {
       renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
+          console.log('node ' , node);
           return (
             <Box
               sx={{
@@ -29,7 +32,7 @@ const Post = ({ post }) => {
                   width: `100% !important`,
                   height: `350px !important`,
                   position: "unset !important",
-                  objectFit: "cover",
+                  objectFit: objectFit ? "cover" : "unset",
                 },
                 "& >span": {
                   position: "unset !important",
@@ -42,22 +45,28 @@ const Post = ({ post }) => {
                 src={`https://${node.data.target.fields.file.url}`}
                 className="img"
                 layout="fill"
+                alt={node.data.target.fields.description}
               />
             </Box>
           );
         },
       },
     };
-    const { title, image, text, list } = post.fields;
+
     return (
       <Paper sx={{ padding: "20px" }}>
+        <Head>
+          <title>کریپتو ققنوس | {pageTitle}</title>
+          <meta name="description" content={description}/>
+          <meta name="keywords" content={keywords}/>
+        </Head>
         <Typography variant="h4" component="h1" sx={{ marginBottom: "20px" }}>
           {title}
         </Typography>
         <Box
           sx={{
             "& >span> img": {
-              objectFit: "cover",
+              objectFit: objectFit ? "cover" : "unset",
               width: "100% !important",
               height: "500px !important",
               position: "unset !important",
@@ -73,6 +82,7 @@ const Post = ({ post }) => {
             src={`https:${image.fields.file.url}`}
             className="img"
             layout="fill"
+            alt={altImage}
           />
         </Box>
         {documentToReactComponents(text, renderedOption)}
