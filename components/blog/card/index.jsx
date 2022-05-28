@@ -20,6 +20,7 @@ export const BlogCard = ({ post }) => {
             height: "250px !important",
             position: "unset !important",
             objectFit: objectFit ? "cover" : "unset",
+            margin: objectFit ? "0px" : "5px !important",
           },
           "& >span": {
             position: "unset !important",

@@ -1,10 +1,18 @@
 import { BlogCard } from "@/components";
 import { Grid } from "@mui/material";
 import { createClient } from "contentful";
+import Head from "next/head";
 
 export const Blog = ({ list }) => {
   return (
     <Grid container spacing={4}>
+      <Head>
+        <title>کریپتو ققنوس | وبلاگ</title>
+        <meta
+          name="description"
+          content="وبلاگ کریپتو ققنوس . آموزش , خبر , تحلیل , در حوزه ی کریپتو"
+        />
+      </Head>
       {list.map((el, idx) => (
         <Grid item xl={4} lg={4} md={4} sm={6} xs={12} key={idx}>
           <BlogCard post={el.fields} />
