@@ -10,7 +10,7 @@ export const BbandsColumn = (strategy) => {
     {
       field: "sensitivity_minus",
       label: "حساسیت منفی",
-      tooltip: 1 - strategy.settings.find((e) => e.name === "sensitivity").value,
+      tooltip: strategy.settings.find((e) => e.name === "sensitivity").value,
       customCell: false,
       id: 3,
     },

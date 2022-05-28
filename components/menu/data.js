@@ -47,11 +47,6 @@ const list = [
         activeRoute: "/profile/edite",
         title: "ویرایش",
       },
-      {
-        href: "/ticket",
-        activeRoute: "/ticket",
-        title: "ارسال تیکت",
-      },
     ],
   },
   {

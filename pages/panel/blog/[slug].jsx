@@ -6,6 +6,7 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "@/redux/action/Actions";
 import { Loading } from "@/components";
+import { BLOCKS } from "@contentful/rich-text-types";
 const client = createClient({
   space: process.env.CONTENTFULL_SPACEID,
   accessToken: process.env.CONTENTFULL_ACCESSKEY,
@@ -14,10 +15,39 @@ const client = createClient({
 const Post = ({ post }) => {
   if (!post) {
     const dispatch = useDispatch();
-    console.log("if");
+
     dispatch(toggleLoading({ show: true, isGlobal: true }));
     return <Loading />;
   } else {
+    const renderedOption = {
+      renderNode: {
+        [BLOCKS.EMBEDDED_ASSET]: (node) => {
+          return (
+            <Box
+              sx={{
+                "& >span> img": {
+                  width: `100% !important`,
+                  height: `350px !important`,
+                  position: "unset !important",
+                  objectFit: "cover",
+                },
+                "& >span": {
+                  position: "unset !important",
+                  width: "100% !important",
+                  height: "100% !important",
+                },
+              }}
+            >
+              <Image
+                src={`https://${node.data.target.fields.file.url}`}
+                className="img"
+                layout="fill"
+              />
+            </Box>
+          );
+        },
+      },
+    };
     const { title, image, text, list } = post.fields;
     return (
       <Paper sx={{ padding: "20px" }}>
@@ -45,7 +75,7 @@ const Post = ({ post }) => {
             layout="fill"
           />
         </Box>
-        {documentToReactComponents(text)}
+        {documentToReactComponents(text, renderedOption)}
         <Typography sx={{ display: "flex", alignItems: "center" }}>
           <LocalOfferIcon fontSize="10px" sx={{ marginRight: "5px" }} />
           کلمات کلیدی :

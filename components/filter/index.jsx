@@ -20,7 +20,7 @@ export const FilterComponent = ({ apiUrl, nexUrl }) => {
   }
   return (
     <Fragment>
-      <Paper sx={{ padding: "20px" }}>
+      <Paper sx={{ padding: "20px", marginBottom: "20px" }}>
         <Grid container spacing={4}>
           {Object.keys(coins).length === 0 ? (
             <FilterButton />
@@ -43,7 +43,7 @@ export const FilterComponent = ({ apiUrl, nexUrl }) => {
           </Alert>
         </Paper>
       ) : (
-        <Box marginTop="20px">
+        <Box>
           <GridAnalysis
             apiUrl={apiUrl}
             nexUrl={nexUrl}

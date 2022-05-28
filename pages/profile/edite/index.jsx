@@ -74,27 +74,22 @@ const Edite = ({ user, nexUrl, list }) => {
       const dateTime = new Date();
       dateTime.setFullYear(dateTime.getFullYear() + 10);
       setCookies("exchange", values.exchange, { expires: dateTime });
-      console.log(userData.userName);
-      if (
-        userData.email !== values.email ||
-        userData.userName !== values.userName
-      ) {
-        dispatch(toggleLoading({ show: true, isGlobal: true }));
-        postHandeled(
-          "/user/edite",
-          values,
-          () => {},
-          () => {
-            dispatch(toggleLoading({ show: false, isGlobal: false }));
-          }
-        );
-        dispatch(
-          toggleSnackBar({
-            message: "حساب کاربری شما به روز رسانی شد",
-            show: true,
-          })
-        );
-      }
+      dispatch(toggleLoading({ show: true, isGlobal: true }));
+      postHandeled(
+        "/user/edite",
+        values,
+        () => {
+          dispatch(
+            toggleSnackBar({
+              message: "حساب کاربری شما به روز رسانی شد",
+              show: true,
+            })
+          );
+        },
+        () => {
+          dispatch(toggleLoading({ show: false, isGlobal: false }));
+        }
+      );
     },
   });
   const handleChangeExchange = (e) => {

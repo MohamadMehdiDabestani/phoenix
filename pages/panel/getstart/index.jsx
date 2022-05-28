@@ -1,7 +1,4 @@
-import ConstructionIcon from "@mui/icons-material/Construction";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import CandlestickChartIcon from "@mui/icons-material/CandlestickChart";
-import AddTaskIcon from "@mui/icons-material/AddTask";
 import HelpIcon from "@mui/icons-material/Help";
 import DnsIcon from "@mui/icons-material/Dns";
 import { Alert, Paper, Typography } from "@mui/material";
@@ -23,35 +20,12 @@ const GetStart = () => {
       </Alert>
       <Alert
         sx={{ margin: "15px 0" }}
-        icon={<ConstructionIcon fontSize="inherit" />}
-        severity="info"
-      >
-        قسمت بلاگ سایت در دست توسعه می باشد
-      </Alert>
-      <Alert
-        sx={{ margin: "15px 0" }}
         icon={<CandlestickChartIcon fontSize="inherit" />}
         severity="info"
       >
         شما برای استفاده از سایت می بایس ابتدا صرافی و استراتژی خود در بازار را
         تعریف کنید. برای انتخاب صرافی وارد قسمت حساب کاربری و سپس وارد ویرایش
         شوید و برای استراتژی وارد قسمت بازار و سپس استراتژی شوید
-      </Alert>
-      <Alert
-        sx={{ margin: "15px 0" }}
-        icon={<ManageAccountsIcon fontSize="inherit" />}
-        severity="info"
-      >
-        اهراز هویت سایت در دست توسعه می باشد و تا تکمیل پروسه ی توسعه استفاده ی
-        از سایت بلامانع میباشد
-      </Alert>
-      <Alert
-        sx={{ margin: "15px 0" }}
-        icon={<AddTaskIcon fontSize="inherit" />}
-        severity="info"
-      >
-        بخش های تکمیل شده ی سایت تست شده و قابل استفاده می باشند . بخش های تکمیل
-        شده : افزودن استراتژی , تحلیل بازار , انتخاب صرافی , فیلتر بازار
       </Alert>
       <Alert sx={{ margin: "15px 0" }} icon={<HelpIcon fontSize="inherit" />}>
         راهنمای شروع :
