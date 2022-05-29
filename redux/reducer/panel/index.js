@@ -163,6 +163,7 @@ export const panelReducer = (state = initialState, action) => {
         break;
       }
       case types.SET_ROW: {
+        console.log('set row' , action.payload);
         const existing = draft.rows.find(
           (e) => e.coinName === action.payload.coinName
         );
