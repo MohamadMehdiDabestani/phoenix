@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 export const BlogCard = ({ post }) => {
   const { image, title, slug, shortText, objectFit } = post;
@@ -20,7 +21,7 @@ export const BlogCard = ({ post }) => {
             height: "250px !important",
             position: "unset !important",
             objectFit: objectFit ? "cover" : "unset",
-            margin: objectFit ? "0px" : "5px !important",
+            padding: objectFit ? "0px" : "15px !important",
           },
           "& >span": {
             position: "unset !important",
@@ -40,7 +41,7 @@ export const BlogCard = ({ post }) => {
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {shortText}
+          {documentToReactComponents(shortText)}
         </Typography>
       </CardContent>
       <CardActions>
