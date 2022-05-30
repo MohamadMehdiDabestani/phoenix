@@ -6,7 +6,7 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "@/redux/action/Actions";
 import { Loading } from "@/components";
-import { BLOCKS } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import Head from "next/head";
 const client = createClient({
   space: process.env.CONTENTFULL_SPACEID,
@@ -33,6 +33,21 @@ const Post = ({ post }) => {
     } = post.fields;
     const renderedOption = {
       renderNode: {
+        [INLINES.HYPERLINK]: (node) => {
+          // const expression =
+          // /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+          // console.log("check", expression.test(node.data.uri) , node.data.uri);
+          return (
+            <a
+              href={node.data.uri}
+              target="_blank"
+              rel="noreferrer"
+              className="link"
+            >
+              {node.content[0].value}
+            </a>
+          );
+        },
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
           return (
             <Box
@@ -63,7 +78,15 @@ const Post = ({ post }) => {
     };
 
     return (
-      <Paper sx={{ padding: "20px" }}>
+      <Paper
+        sx={{
+          padding: "20px",
+          "& .link": {
+            color: "#8381f9",
+            textDecoration: "none",
+          },
+        }}
+      >
         <Head>
           <title>کریپتو ققنوس | {pageTitle}</title>
           <meta name="description" content={description} />
