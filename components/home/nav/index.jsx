@@ -95,6 +95,11 @@ export const Nav = () => {
                 {link.label}
               </Button>
             ))}
+            <Link href="/panel/blog">
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                بلاگ
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>
