@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import Link from "next/link";
 
 const links = [
   { label: "توضیحات", to: "#intro" },
@@ -22,12 +23,12 @@ export const Nav = () => {
   const handleClick = (e) => {
     e.preventDefault();
     const target = e.target.getAttribute("to");
-    const location = document.querySelector(target).offsetTop
+    const location = document.querySelector(target).offsetTop;
 
     window.scrollTo({
       left: 0,
       top: location - 70,
-    })
+    });
     handleCloseNavMenu();
   };
   const handleOpenNavMenu = (event) => {
@@ -73,9 +74,14 @@ export const Nav = () => {
             >
               {links.map((link, idx) => (
                 <MenuItem key={idx} to={link.to} onClick={handleClick}>
-                  <Typography to={link.to} textAlign="center">{link.label}</Typography>
+                  <Typography to={link.to} textAlign="center">
+                    {link.label}
+                  </Typography>
                 </MenuItem>
               ))}
+              <Link href="/panel/blog">
+                <MenuItem>بلاگ</MenuItem>
+              </Link>
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>

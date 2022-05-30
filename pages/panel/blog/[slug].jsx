@@ -101,7 +101,7 @@ const Post = ({ post }) => {
         </Typography>
         {list.map((el, idx) => (
           <Chip
-            sx={{ marginRight: "5px" }}
+            sx={{ margin: "5px" }}
             key={idx}
             label={el}
             variant="outlined"
