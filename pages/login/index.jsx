@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Alert, Button, Grid, Typography } from "@mui/material";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PasswordIcon from "@mui/icons-material/Password";
-import GoogleIcon from "@mui/icons-material/Google";
+// import GoogleIcon from "@mui/icons-material/Google";
 import * as yup from "yup";
 import Link from "next/link";
 import { HomeIconTopLeft, InputForm, Loading } from "@/components";
@@ -180,7 +180,7 @@ const Login = () => {
               </Button>
             </Link> */}
           </Box>
-          <Button
+          {/* <Button
             fullWidth
             variant="contained"
             color="secondary"
@@ -188,7 +188,7 @@ const Login = () => {
             endIcon={<GoogleIcon />}
           >
             ورود با گوگل
-          </Button>
+          </Button> */}
         </form>
       </Grid>
       <Grid

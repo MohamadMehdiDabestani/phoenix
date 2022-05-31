@@ -5,7 +5,7 @@ import { Alert, Button, Grid, Typography } from "@mui/material";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import PasswordIcon from "@mui/icons-material/Password";
-import GoogleIcon from "@mui/icons-material/Google";
+// import GoogleIcon from "@mui/icons-material/Google";
 import * as yup from "yup";
 import Link from "next/link";
 import { HomeIconTopLeft, InputForm, Loading } from "@/components";
@@ -177,7 +177,7 @@ const Register = () => {
           <Button fullWidth variant="contained" type="submit">
             ثبت نام
           </Button>
-          <Button
+          {/* <Button
             fullWidth
             variant="contained"
             color="secondary"
@@ -185,7 +185,7 @@ const Register = () => {
             endIcon={<GoogleIcon />}
           >
             ورود با گوگل
-          </Button>
+          </Button> */}
         </form>
       </Grid>
     </Grid>
