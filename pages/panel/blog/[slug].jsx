@@ -95,13 +95,13 @@ const Post = ({ post }) => {
         <Head>
           <title>کریپتو ققنوس | {pageTitle}</title>
           <meta property="og:type" content="article" />
-          <meta property="og:title" content={pageTitle} />
-          <meta property="og:description" content={description} />
+          <meta property="og:title" content={title} />
+          
           <meta
             property="og:image"
             content={`https:${image.fields.file.url}`}
           />
-          <meta property="og:url" content={`https:${image.fields.file.url}`} />
+          <meta property="og:url" content={`https://phoenixcrypto.vercel.app${shortLink}`} />
           <meta property="og:site_name" content="The Phoenix Crypto" />
           <meta name="description" content={description} />
           <meta name="keywords" content={keywords} />
