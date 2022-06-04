@@ -101,10 +101,7 @@ const Post = ({ post }) => {
             property="og:image"
             content={`https:${image.fields.file.url}`}
           />
-          <meta
-            property="og:url"
-            content={`https://phoenixcrypto.vercel.app${shortLink}`}
-          />
+          <meta property="og:url" content={`https:${image.fields.file.url}`} />
           <meta property="og:site_name" content="The Phoenix Crypto" />
           <meta name="description" content={description} />
           <meta name="keywords" content={keywords} />
