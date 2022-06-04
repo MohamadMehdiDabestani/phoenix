@@ -37,7 +37,7 @@ const Custom404 = () => {
         layout="fill"
         className="img"
         src="/image/undraw_page_not_found_re_e9o6.svg"
-        alt="Notfound page"
+        alt="صفه ی مورد نظر شما یافت نشد"
       />          
       <Typography variant="h6" component="p">
           صفه ی مورد نظر یافت نشد

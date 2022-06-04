@@ -1,7 +1,7 @@
 import DoneAllIcon from "@mui/icons-material/DoneAll";
-import DeleteIcon from "@mui/icons-material/Delete";
+// import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+// import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import produce from "immer";
 import * as types from "@/redux/action/panel/Types";
 import { Box, Button, Tooltip, Typography } from "@mui/material";
@@ -108,11 +108,11 @@ export const panelReducer = (state = initialState, action) => {
                 justifyContent: "space-evenly",
               }}
             >
-              <Tooltip title="حذف" disableInteractive placement="top" arrow>
+              {/* <Tooltip title="حذف" disableInteractive placement="top" arrow>
                 <Button className="icon-btn" color="error" variant="contained">
                   <DeleteIcon fontSize="small" />
                 </Button>
-              </Tooltip>
+              </Tooltip> */}
               <Tooltip title="مشاهده" disableInteractive placement="top" arrow>
                 <Button
                   onClick={() =>
@@ -124,7 +124,7 @@ export const panelReducer = (state = initialState, action) => {
                   <VisibilityIcon fontSize="small" />
                 </Button>
               </Tooltip>
-              <Tooltip
+              {/* <Tooltip
                 title="افزودن به علاقه مندی ها"
                 disableInteractive
                 placement="top"
@@ -137,7 +137,7 @@ export const panelReducer = (state = initialState, action) => {
                 >
                   <PlaylistAddIcon fontSize="small" />
                 </Button>
-              </Tooltip>
+              </Tooltip> */}
               {/* <Tooltip
                 title="حذف از علاقه مندی ها"
                 disableInteractive

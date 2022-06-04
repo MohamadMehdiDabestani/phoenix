@@ -28,6 +28,8 @@ export async function getStaticProps() {
   });
   const res = await client.getEntries({
     content_type: "cryptoTool",
+    select:
+      "fields.title,fields.image,fields.altImage,fields.objectFit,fields.shortText,fields.slug",
   });
   return {
     props: {

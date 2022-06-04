@@ -1,5 +1,6 @@
+import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import { createClient } from "contentful";
-import { Box, Chip, Paper, Typography } from "@mui/material";
+import { Box, Chip, Paper, Tooltip, Typography } from "@mui/material";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -7,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { toggleLoading } from "@/redux/action/Actions";
 import { Loading } from "@/components";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Head from "next/head";
 const client = createClient({
   space: process.env.CONTENTFULL_SPACEID,
@@ -16,10 +18,10 @@ const client = createClient({
 const Post = ({ post }) => {
   if (!post) {
     const dispatch = useDispatch();
-
     dispatch(toggleLoading({ show: true, isGlobal: true }));
     return <Loading />;
   } else {
+    const [value, copy] = useCopyToClipboard(); // eslint-disable-line
     const {
       title,
       image,
@@ -30,13 +32,11 @@ const Post = ({ post }) => {
       pageTitle,
       description,
       keywords,
+      shortLink,
     } = post.fields;
     const renderedOption = {
       renderNode: {
         [INLINES.HYPERLINK]: (node) => {
-          // const expression =
-          // /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-          // console.log("check", expression.test(node.data.uri) , node.data.uri);
           return (
             <a
               href={node.data.uri}
@@ -92,9 +92,43 @@ const Post = ({ post }) => {
           <meta name="description" content={description} />
           <meta name="keywords" content={keywords} />
         </Head>
-        <Typography variant="h4" component="h1" sx={{ marginBottom: "20px" }}>
-          {title}
-        </Typography>
+        <Box
+          sx={{
+            marginBottom: "45px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography variant="h4" component="h1">
+            {title}
+          </Typography>
+          <Box
+            component="span"
+            sx={{
+              border: "2px solid #cfd8dc",
+              borderRadius: "5px",
+              display: "flex",
+            }}
+          >
+            <Typography sx={{ padding: "7px" }}>
+              لینک کوتاه : {`https://phoenixcrypto.vercel.app${shortLink}`}
+            </Typography>
+            <Box
+              component="span"
+              sx={{
+                padding: "5px",
+                borderLeft: "2px solid #cfd8dc",
+                display: "flex",
+                cursor: "pointer",
+              }}
+            >
+              <Tooltip title="کپی" arrow>
+                <ContentCopyIcon onClick={() => copy(`https://phoenixcrypto.vercel.app${shortLink}`)} />
+              </Tooltip>
+            </Box>
+          </Box>
+        </Box>
         <Box
           sx={{
             "& >span> img": {
@@ -162,6 +196,7 @@ export async function getStaticProps({ params }) {
       },
     };
   }
+  console.log("post", items[0]);
   return {
     props: {
       post: items[0],
