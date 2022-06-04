@@ -12,9 +12,10 @@ const P = ({ json }) => {
   useEffect(() => {
     dispatch(withoutLayout(true));
     if (json) {
-      console.log("first if", json);
-      const post = JSON.parse(json);
-      router.push(`/panel/blog/${post[0].fields.slug}`);
+      setTimeout(() => {
+        const post = JSON.parse(json);
+        router.push(`/panel/blog/${post[0].fields.slug}`);
+      }, [3000]);
     }
     return function cleanUp() {
       dispatch(withoutLayout(false));

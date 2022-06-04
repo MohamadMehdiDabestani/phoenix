@@ -1,3 +1,4 @@
+import { toggleSnackBar } from "@/redux/action/Actions";
 import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import { createClient } from "contentful";
 import { Box, Chip, Paper, Tooltip, Typography } from "@mui/material";
@@ -16,8 +17,8 @@ const client = createClient({
 });
 
 const Post = ({ post }) => {
+  const dispatch = useDispatch();
   if (!post) {
-    const dispatch = useDispatch();
     dispatch(toggleLoading({ show: true, isGlobal: true }));
     return <Loading />;
   } else {
@@ -34,6 +35,10 @@ const Post = ({ post }) => {
       keywords,
       shortLink,
     } = post.fields;
+    const handleCopyShortLink = () => {
+      copy(`https://phoenixcrypto.vercel.app${shortLink}`);
+      dispatch(toggleSnackBar({ message: "پیوند کپی شد", show: true }));
+    };
     const renderedOption = {
       renderNode: {
         [INLINES.HYPERLINK]: (node) => {
@@ -124,7 +129,7 @@ const Post = ({ post }) => {
               }}
             >
               <Tooltip title="کپی" arrow>
-                <ContentCopyIcon onClick={() => copy(`https://phoenixcrypto.vercel.app${shortLink}`)} />
+                <ContentCopyIcon onClick={handleCopyShortLink} />
               </Tooltip>
             </Box>
           </Box>
