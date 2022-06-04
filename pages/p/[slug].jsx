@@ -1,6 +1,7 @@
 import { withoutLayout } from "@/redux/action/Actions";
 import { Box, Typography } from "@mui/material";
 import { createClient } from "contentful";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -10,15 +11,15 @@ const P = ({ json }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(withoutLayout(true));
-    const { post } = JSON.parse(json);
-    if (post) {
-      console.log("redirecting if");
+    if (json) {
+      console.log("first if", json);
+      const post = JSON.parse(json);
       router.push(`/panel/blog/${post.fields.slug}`);
     }
     return function cleanUp() {
       dispatch(withoutLayout(false));
     };
-  }, [3000]);
+  }, [json]);
   return (
     <Box
       sx={{
@@ -39,6 +40,9 @@ const P = ({ json }) => {
         },
       }}
     >
+      <Head>
+        <title>فونکس کریپتو | شما در حال انتقال به صفه ی مورد نظر هستیند</title>
+      </Head>
       <Image
         layout="fill"
         className="img"
@@ -74,7 +78,9 @@ export async function getStaticProps({ params }) {
   const { items } = await client.getEntries({
     content_type: "cryptoTool",
     "fields.shortLink": `/p/${params.slug}`,
+    select: "fields.slug",
   });
+  console.log("items", items[0]);
   return {
     props: {
       json: JSON.stringify(items[0]),
