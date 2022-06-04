@@ -74,14 +74,6 @@ export async function getStaticProps({ params }) {
     content_type: "cryptoTool",
     "fields.shortLink": `/p/${params.slug}`,
   });
-  if (!items.length) {
-    return {
-      redirect: {
-        destination: "/notfound",
-        permanent: false,
-      },
-    };
-  }
   return {
     props: {
       post: items[0],
