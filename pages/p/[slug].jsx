@@ -11,6 +11,7 @@ const P = ({ post }) => {
   useEffect(() => {
     dispatch(withoutLayout(true));
     if (post) {
+      console.log("redirecting if");
       router.push(`/panel/blog/${post.fields.slug}`);
     }
     return function cleanUp() {
@@ -63,7 +64,6 @@ export async function getStaticPaths() {
       params: { slug: el.fields.shortLink },
     };
   });
-  console.log("paths", paths);
   return {
     paths,
     fallback: true,
