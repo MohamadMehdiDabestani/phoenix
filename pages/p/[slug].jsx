@@ -21,6 +21,22 @@ const P = ({ json }) => {
       dispatch(withoutLayout(false));
     };
   }, [json]);
+  console.log("pathname", router);
+  if (!router.query.slug)
+    return (
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "40px",
+        }}
+      >
+        در حال بارگزاری
+      </Box>
+    );
   return (
     <Box
       sx={{
@@ -43,6 +59,10 @@ const P = ({ json }) => {
     >
       <Head>
         <title>فونکس کریپتو | شما در حال انتقال به صفه ی مورد نظر هستیند</title>
+        <link
+          rel="canonical"
+          href={`https://phoenixcrypto.vercel.app/p/${router.query.slug}`}
+        />
       </Head>
       <Image
         layout="fill"
