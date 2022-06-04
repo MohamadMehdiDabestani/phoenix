@@ -5,11 +5,12 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-const P = ({ post }) => {
+const P = ({ json }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(withoutLayout(true));
+    const { post } = JSON.parse(json);
     if (post) {
       console.log("redirecting if");
       router.push(`/panel/blog/${post.fields.slug}`);
@@ -76,7 +77,7 @@ export async function getStaticProps({ params }) {
   });
   return {
     props: {
-      post: items[0],
+      json: JSON.stringify(items[0]),
     },
     revalidate: 1,
   };
