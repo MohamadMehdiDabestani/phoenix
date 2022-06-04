@@ -14,7 +14,7 @@ const P = ({ json }) => {
     if (json) {
       console.log("first if", json);
       const post = JSON.parse(json);
-      router.push(`/panel/blog/${post.fields.slug}`);
+      router.push(`/panel/blog/${post[0].fields.slug}`);
     }
     return function cleanUp() {
       dispatch(withoutLayout(false));
@@ -83,7 +83,7 @@ export async function getStaticProps({ params }) {
   console.log("items", items[0]);
   return {
     props: {
-      json: JSON.stringify(items[0]),
+      json: JSON.stringify(items),
     },
     revalidate: 1,
   };
