@@ -59,7 +59,7 @@ const Post = ({ post }) => {
               sx={{
                 "& >span> img": {
                   width: `100% !important`,
-                  height: `350px !important`,
+                  height: `450px !important`,
                   position: "unset !important",
                   objectFit: objectFit ? "cover" : "unset",
                 },
@@ -96,12 +96,14 @@ const Post = ({ post }) => {
           <title>کریپتو ققنوس | {pageTitle}</title>
           <meta property="og:type" content="article" />
           <meta property="og:title" content={title} />
-          
           <meta
             property="og:image"
             content={`https:${image.fields.file.url}`}
           />
-          <meta property="og:url" content={`https://phoenixcrypto.vercel.app${shortLink}`} />
+          <meta
+            property="og:url"
+            content={`https://phoenixcrypto.vercel.app${shortLink}`}
+          />
           <meta property="og:site_name" content="The Phoenix Crypto" />
           <meta name="description" content={description} />
           <meta name="keywords" content={keywords} />
@@ -148,7 +150,7 @@ const Post = ({ post }) => {
             "& >span> img": {
               objectFit: objectFit ? "cover" : "unset",
               width: "100% !important",
-              height: "500px !important",
+              height: "550px !important",
               position: "unset !important",
             },
             "& >span": {
