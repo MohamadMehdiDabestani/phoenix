@@ -9,9 +9,17 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 
 export const BlogCard = ({ post }) => {
-  const { image, title, slug, shortText, objectFit } = post;
+  const { image, title, slug, shortText, objectFit , altImage} = post;
+  const config = {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node) => {
+        return <Typography variant="body2">{node.content[0].value}</Typography>;
+      },
+    },
+  };
   return (
     <Card>
       <Box
@@ -34,6 +42,7 @@ export const BlogCard = ({ post }) => {
           src={`https:${image.fields.file.url}`}
           className="img"
           layout="fill"
+          alt={altImage}
         />
       </Box>
       <CardContent>
@@ -41,7 +50,7 @@ export const BlogCard = ({ post }) => {
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {documentToReactComponents(shortText)}
+          {documentToReactComponents(shortText, config)}
         </Typography>
       </CardContent>
       <CardActions>

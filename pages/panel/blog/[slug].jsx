@@ -1,22 +1,23 @@
 import { toggleSnackBar } from "@/redux/action/Actions";
 import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import { createClient } from "contentful";
-import { Box, Chip, Paper, Tooltip, Typography } from "@mui/material";
+import { Box, Chip, Grid, Paper, Tooltip, Typography } from "@mui/material";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "@/redux/action/Actions";
-import { Loading } from "@/components";
+import { BlogCard, Loading } from "@/components";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Head from "next/head";
+import { Fragment } from "react";
 const client = createClient({
   space: process.env.CONTENTFULL_SPACEID,
   accessToken: process.env.CONTENTFULL_ACCESSKEY,
 });
 
-const Post = ({ post }) => {
+const Post = ({ post, relatedPostList }) => {
   const dispatch = useDispatch();
   if (!post) {
     dispatch(toggleLoading({ show: true, isGlobal: true }));
@@ -83,105 +84,121 @@ const Post = ({ post }) => {
     };
 
     return (
-      <Paper
-        sx={{
-          padding: "20px",
-          "& .link": {
-            color: "#8381f9",
-            textDecoration: "none",
-          },
-        }}
-      >
-        <Head>
-          <title>کریپتو ققنوس | {pageTitle}</title>
-          <meta property="og:type" content="article" />
-          <meta property="og:title" content={title} />
-          <meta
-            property="og:image"
-            content={`https:${image.fields.file.url}`}
-          />
-          <meta
-            property="og:url"
-            content={`https://phoenixcrypto.vercel.app${shortLink}`}
-          />
-          <meta property="og:site_name" content="The Phoenix Crypto" />
-          <meta name="description" content={description} />
-          <meta name="keywords" content={keywords} />
-        </Head>
-        <Box
+      <Fragment>
+        <Paper
           sx={{
-            marginBottom: "45px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            padding: "20px",
+            "& .link": {
+              color: "#8381f9",
+              textDecoration: "none",
+            },
           }}
         >
-          <Typography variant="h4" component="h1">
-            {title}
-          </Typography>
+          <Head>
+            <title>کریپتو ققنوس | {pageTitle}</title>
+            <meta property="og:type" content="article" />
+            <meta property="og:title" content={title} />
+            <meta
+              property="og:image"
+              content={`https:${image.fields.file.url}`}
+            />
+            <meta
+              property="og:url"
+              content={`https://phoenixcrypto.vercel.app${shortLink}`}
+            />
+            <meta property="og:site_name" content="The Phoenix Crypto" />
+            <meta name="description" content={description} />
+            <meta name="keywords" content={keywords} />
+            <meta property="og:image:width" content="260" />
+            <meta property="og:image:height" content="260" />
+          </Head>
           <Box
-            component="span"
             sx={{
-              border: "2px solid #cfd8dc",
-              borderRadius: "5px",
+              marginBottom: "45px",
               display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
-            <Typography sx={{ padding: "7px" }}>
-              لینک کوتاه : {`https://phoenixcrypto.vercel.app${shortLink}`}
+            <Typography variant="h4" component="h1">
+              {title}
             </Typography>
             <Box
               component="span"
               sx={{
-                padding: "5px",
-                borderLeft: "2px solid #cfd8dc",
+                border: "2px solid #cfd8dc",
+                borderRadius: "5px",
                 display: "flex",
-                cursor: "pointer",
               }}
             >
-              <Tooltip title="کپی" arrow>
-                <ContentCopyIcon onClick={handleCopyShortLink} />
-              </Tooltip>
+              <Typography sx={{ padding: "7px" }}>
+                لینک کوتاه : {`https://phoenixcrypto.vercel.app${shortLink}`}
+              </Typography>
+              <Box
+                component="span"
+                sx={{
+                  padding: "5px",
+                  borderLeft: "2px solid #cfd8dc",
+                  display: "flex",
+                  cursor: "pointer",
+                }}
+              >
+                <Tooltip title="کپی" arrow>
+                  <ContentCopyIcon onClick={handleCopyShortLink} />
+                </Tooltip>
+              </Box>
             </Box>
           </Box>
+          <Box
+            sx={{
+              "& >span> img": {
+                objectFit: objectFit ? "cover" : "unset",
+                width: "100% !important",
+                height: "550px !important",
+                position: "unset !important",
+              },
+              "& >span": {
+                position: "unset !important",
+                width: "100% !important",
+                height: "100% !important",
+              },
+            }}
+          >
+            <Image
+              src={`https:${image.fields.file.url}`}
+              className="img"
+              layout="fill"
+              alt={altImage}
+            />
+          </Box>
+          {documentToReactComponents(text, renderedOption)}
+          <Typography sx={{ display: "flex", alignItems: "center" }}>
+            <LocalOfferIcon fontSize="10px" sx={{ marginRight: "5px" }} />
+            کلمات کلیدی :
+          </Typography>
+          {list.map((el, idx) => (
+            <Chip
+              sx={{ margin: "5px" }}
+              key={idx}
+              label={el}
+              variant="outlined"
+              onClick={() => console.log("")}
+            />
+          ))}
+        </Paper>
+        <Box sx={{ margin: "15px 0" }}>
+          <Typography component="p" variant="h6">
+            هم چنین بررسی کنید
+          </Typography>
+          <Grid container sx={{ marginTop: "20px" }}>
+            {relatedPostList.map((el, idx) => (
+              <Grid item xl={4} lg={4} md={4} sm={6} xs={12} key={idx}>
+                <BlogCard post={el.fields} key={idx} />
+              </Grid>
+            ))}
+          </Grid>
         </Box>
-        <Box
-          sx={{
-            "& >span> img": {
-              objectFit: objectFit ? "cover" : "unset",
-              width: "100% !important",
-              height: "550px !important",
-              position: "unset !important",
-            },
-            "& >span": {
-              position: "unset !important",
-              width: "100% !important",
-              height: "100% !important",
-            },
-          }}
-        >
-          <Image
-            src={`https:${image.fields.file.url}`}
-            className="img"
-            layout="fill"
-            alt={altImage}
-          />
-        </Box>
-        {documentToReactComponents(text, renderedOption)}
-        <Typography sx={{ display: "flex", alignItems: "center" }}>
-          <LocalOfferIcon fontSize="10px" sx={{ marginRight: "5px" }} />
-          کلمات کلیدی :
-        </Typography>
-        {list.map((el, idx) => (
-          <Chip
-            sx={{ margin: "5px" }}
-            key={idx}
-            label={el}
-            variant="outlined"
-            onClick={() => console.log("")}
-          />
-        ))}
-      </Paper>
+      </Fragment>
     );
   }
 };
@@ -212,9 +229,12 @@ export async function getStaticProps({ params }) {
       },
     };
   }
+  const relatedPostList = items[0].fields.relatedPost;
+  delete items[0].fields.relatedPost;
   return {
     props: {
       post: items[0],
+      relatedPostList,
     },
     revalidate: 1,
   };
