@@ -91,17 +91,14 @@ export const GridAnalysis = ({
         dispatch(toggleLoading({ show: true, isGlobal: true }));
       }
       let names = [];
-      console.log("strategy.indicators", strategy.indicators);
       strategy.indicators
         .filter((ind) => {
           if (ind.both) {
-            console.log("f if");
             return true;
           } else if (ind.outside) {
-            console.log("s if");
             return false;
           }
-          console.log("last");
+
           return true;
         })
         .map((el) => {
@@ -145,7 +142,6 @@ export const GridAnalysis = ({
               }
             }
             if (el.isEnableBreake) {
-              console.log("breake");
               let breakObj = { label: "", field: "", tooltip: "" };
               if (el.breake.side === "both") {
                 breakObj = [
@@ -247,7 +243,6 @@ export const GridAnalysis = ({
       });
     });
   }, [customCoin]);
-  console.log("coluns", columns);
   if (show) return <Loading />;
   return (
     <Fragment>

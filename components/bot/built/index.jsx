@@ -3,7 +3,6 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { Fragment } from "react";
 export const Built = () => {
   const [botStrategy, setBotStrategy] = useLocalStorage("botStrategy", {}); // eslint-disable-line
-  console.log("botStrategy.listTypes" , botStrategy.listTypes.filter((l) => l.isActive == true));
   return (
     <Item label="استراتژی">
       <Item label={`وضعیت : ${botStrategy.status ? "فعال" : "غیر فعال"}`} />

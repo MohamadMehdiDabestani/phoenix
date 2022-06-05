@@ -54,7 +54,6 @@ export const EditeProfileDialogBox = ({ url }) => {
       postHandeled("/api/user/verifyExchange", { exchange, auth: values });
     },
   });
-  console.log("formik", formik);
   return (
     <DialogBox title={`احراز هویت صرافی ${exchange}`}>
       <Box

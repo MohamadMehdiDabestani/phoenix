@@ -6,7 +6,6 @@ import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 export const RenderCellSandR = (props) => {
   const [value, copy] = useCopyToClipboard(); // eslint-disable-line
   const [strategy, _] = useLocalStorage("strategy"); // eslint-disable-line
-  console.log("props", props);
   return (
     <Fragment>
       <Typography>حمایت و مقاومت ها</Typography>

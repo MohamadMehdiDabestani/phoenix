@@ -63,7 +63,6 @@ export const useApi = ({ baseUrl }) => {
           if (response.data.isValidation) {
             showSnack(response.data.err[0].message);
           } else {
-            console.log("2");
             showSnack("مشکی پیش آمده مجدد تلاش کنید");
           }
         }

@@ -7,7 +7,6 @@ export const Indicator = () => {
   const { getMovingName, getInidcatorById } = useIndicator();
   const dispatch = useDispatch();
   const handleChange = (e) => {
-    console.log("changed" , getInidcatorById(e.target.value));
     dispatch(setCombineIndicator(getInidcatorById(e.target.value)));
   };
   return (

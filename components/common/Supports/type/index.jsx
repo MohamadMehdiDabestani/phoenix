@@ -23,7 +23,6 @@ export const Type = () => {
   const handleChange = (e) => {
     dispatch(setSettings({ value: e.target.value, name: e.target.name }));
   };
-  console.log("currentStrategy", currentStrategy);
   return (
     <Grid item xl={2} lg={2} md={3} sm={6} xs={6}>
       <RadioGroup

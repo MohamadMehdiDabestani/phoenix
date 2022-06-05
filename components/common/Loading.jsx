@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 export const Loading = () => {
   const { show, isGlobal } = useSelector((state) => state.loading);
-  console.log("isGlobal" , isGlobal);
   return (
     <Backdrop
       sx={{

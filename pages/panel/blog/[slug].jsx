@@ -1,7 +1,15 @@
 import { toggleSnackBar } from "@/redux/action/Actions";
 import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import { createClient } from "contentful";
-import { Box, Chip, Grid, Paper, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Chip,
+  Grid,
+  Paper,
+  Tooltip,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
@@ -24,6 +32,7 @@ const Post = ({ post, relatedPostList }) => {
     return <Loading />;
   } else {
     const [value, copy] = useCopyToClipboard(); // eslint-disable-line
+    const matches = useMediaQuery((theme) => theme.breakpoints.down("md"));
     const {
       title,
       image,
@@ -82,7 +91,6 @@ const Post = ({ post, relatedPostList }) => {
         },
       },
     };
-
     return (
       <Fragment>
         <Paper
@@ -109,13 +117,13 @@ const Post = ({ post, relatedPostList }) => {
             <meta property="og:site_name" content="The Phoenix Crypto" />
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
-            <meta property="og:image:width" content="260" />
-            <meta property="og:image:height" content="260" />
           </Head>
+
           <Box
             sx={{
               marginBottom: "45px",
               display: "flex",
+              flexDirection: matches ? "column" : "row",
               alignItems: "center",
               justifyContent: "space-between",
             }}
@@ -127,11 +135,14 @@ const Post = ({ post, relatedPostList }) => {
               component="span"
               sx={{
                 border: "2px solid #cfd8dc",
+                marginTop: matches ? "15px" : "0",
                 borderRadius: "5px",
                 display: "flex",
               }}
             >
-              <Typography sx={{ padding: "7px" }}>
+              <Typography
+                sx={{ padding: "7px", fontSize: matches ? "12px" : "1rem" }}
+              >
                 لینک کوتاه : {`https://phoenixcrypto.vercel.app${shortLink}`}
               </Typography>
               <Box

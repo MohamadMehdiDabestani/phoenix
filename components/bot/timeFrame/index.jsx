@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { botUpdateTimeFrame } from "@/redux/action/bot/Actions";
 
 export const TimeFrame = ({ timeframes }) => {
-    console.log("timeFrames" , timeframes);
   const dispatch = useDispatch();
   const { timeFrame } = useSelector((state) => state.bot);
   const handleChange = (e) => {
