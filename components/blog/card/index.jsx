@@ -12,7 +12,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS } from "@contentful/rich-text-types";
 
 export const BlogCard = ({ post }) => {
-  const { image, title, slug, shortText, objectFit , altImage} = post;
+  const { image, title, slug, shortText, objectFit, altImage } = post;
   const config = {
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node) => {
@@ -22,29 +22,34 @@ export const BlogCard = ({ post }) => {
   };
   return (
     <Card>
-      <Box
-        sx={{
-          "& >span> img": {
-            width: "100% !important",
-            height: "250px !important",
-            position: "unset !important",
-            objectFit: objectFit ? "cover" : "unset",
-            padding: objectFit ? "0px" : "15px !important",
-          },
-          "& >span": {
-            position: "unset !important",
-            width: "100% !important",
-            height: "100% !important",
-          },
-        }}
-      >
-        <Image
-          src={`https:${image.fields.file.url}`}
-          className="img"
-          layout="fill"
-          alt={altImage}
-        />
-      </Box>
+      <Link href={`/panel/blog/${slug}`}>
+        <a>
+          <Box
+            sx={{
+              "& >span> img": {
+                width: "100% !important",
+                height: "250px !important",
+                position: "unset !important",
+                objectFit: objectFit ? "cover" : "unset",
+                padding: objectFit ? "0px" : "15px !important",
+              },
+              "& >span": {
+                position: "unset !important",
+                width: "100% !important",
+                height: "100% !important",
+              },
+            }}
+          >
+            <Image
+              src={`https:${image.fields.file.url}`}
+              className="img"
+              layout="fill"
+              alt={altImage}
+            />
+          </Box>
+        </a>
+      </Link>
+
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}
@@ -55,7 +60,9 @@ export const BlogCard = ({ post }) => {
       </CardContent>
       <CardActions>
         <Link href={`/panel/blog/${slug}`}>
-          <Button size="small">ادامه</Button>
+          <a>
+            <Button size="small">ادامه</Button>
+          </a>
         </Link>
       </CardActions>
     </Card>

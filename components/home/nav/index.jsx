@@ -9,13 +9,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import Link from "next/link";
+
 
 const links = [
   { label: "توضیحات", to: "#intro" },
   { label: "پلن ها", to: "#planes" },
   { label: "سوالات متداول", to: "#faq" },
   { label: "شروع", to: "#strat" },
+  { label: "بلاگ", to: "#blog" },
 ];
 
 export const Nav = () => {
@@ -79,9 +80,6 @@ export const Nav = () => {
                   </Typography>
                 </MenuItem>
               ))}
-              <Link href="/panel/blog">
-                <MenuItem>بلاگ</MenuItem>
-              </Link>
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -95,11 +93,6 @@ export const Nav = () => {
                 {link.label}
               </Button>
             ))}
-            <Link href="/panel/blog">
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
-                بلاگ
-              </Button>
-            </Link>
           </Box>
         </Toolbar>
       </Container>

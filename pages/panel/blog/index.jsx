@@ -7,10 +7,14 @@ export const Blog = ({ list }) => {
   return (
     <Grid container spacing={4}>
       <Head>
-        <title>کریپتو ققنوس | وبلاگ</title>
+        <title>فونیکس کریپتو | بلاگ</title>
         <meta
           name="description"
-          content="وبلاگ کریپتو ققنوس . آموزش , خبر , تحلیل , در حوزه ی کریپتو"
+          content="بلاگ فونیکس کریپتو  آموزش , خبر , تحلیل , در حوزه ی کریپتو"
+        />
+        <meta
+          name="keywords"
+          content="بلاگ فونیکس کریپتو , آموزش رمز ارز , خبر رمز ارز , تحلیل رمز ارز ,مقالات رمز ارز , مقالات فونیکس کریپتو"
         />
       </Head>
       {list.map((el, idx) => (
@@ -30,6 +34,7 @@ export async function getStaticProps() {
     content_type: "cryptoTool",
     select:
       "fields.title,fields.image,fields.altImage,fields.objectFit,fields.shortText,fields.slug",
+    order: "-sys.createdAt",
   });
   return {
     props: {

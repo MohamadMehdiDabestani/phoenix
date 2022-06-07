@@ -197,18 +197,20 @@ const Post = ({ post, relatedPostList }) => {
             />
           ))}
         </Paper>
-        <Box sx={{ margin: "15px 0" }}>
-          <Typography component="p" variant="h6">
-            هم چنین بررسی کنید
-          </Typography>
-          <Grid container sx={{ marginTop: "20px" }}>
-            {relatedPostList.map((el, idx) => (
-              <Grid item xl={4} lg={4} md={4} sm={6} xs={12} key={idx}>
-                <BlogCard post={el.fields} key={idx} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+        {relatedPostList.length > 0 && (
+          <Box sx={{ margin: "15px 0" }}>
+            <Typography component="p" variant="h6">
+              هم چنین بررسی کنید
+            </Typography>
+            <Grid container sx={{ marginTop: "20px" }}>
+              {relatedPostList.map((el, idx) => (
+                <Grid item xl={4} lg={4} md={4} sm={6} xs={12} key={idx}>
+                  <BlogCard post={el.fields} key={idx} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        )}
       </Fragment>
     );
   }
@@ -245,7 +247,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       post: items[0],
-      relatedPostList,
+      relatedPostList: relatedPostList ? relatedPostList : [],
     },
     revalidate: 1,
   };
