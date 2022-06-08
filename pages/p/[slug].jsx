@@ -21,7 +21,6 @@ const P = ({ json }) => {
       dispatch(withoutLayout(false));
     };
   }, [json]);
-  console.log("pathname", router);
   if (!router.query.slug)
     return (
       <Box

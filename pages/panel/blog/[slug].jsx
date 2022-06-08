@@ -20,6 +20,7 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Head from "next/head";
 import { Fragment } from "react";
+import { useRouter } from "next/router";
 const client = createClient({
   space: process.env.CONTENTFULL_SPACEID,
   accessToken: process.env.CONTENTFULL_ACCESSKEY,
@@ -27,6 +28,7 @@ const client = createClient({
 
 const Post = ({ post, relatedPostList }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   if (!post) {
     dispatch(toggleLoading({ show: true, isGlobal: true }));
     return <Loading />;
@@ -117,6 +119,10 @@ const Post = ({ post, relatedPostList }) => {
             <meta property="og:site_name" content="The Phoenix Crypto" />
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
+            <link
+              rel="canonical"
+              href={`https://phoenixcrypto.vercel.app/panel/blog/${router.query.slug}`}
+            />
           </Head>
 
           <Box
