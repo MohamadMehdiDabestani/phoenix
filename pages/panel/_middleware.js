@@ -12,7 +12,7 @@ export async function middleware(req) {
       return NextResponse.next();
     }
     url.pathname = "/login";
-    url.search = "";
+    url.search = "notif=true";
     return NextResponse.redirect(url);
   } catch {
     url.pathname = "/badRequest";

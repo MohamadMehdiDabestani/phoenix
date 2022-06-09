@@ -38,13 +38,13 @@ const list = [
     icon: <AccountCircleIcon sx={{ marginRight: "5%" }} />,
     list: [
       {
-        href: "/profile",
-        activeRoute: "/profile",
+        href: "/panel/profile",
+        activeRoute: "/panel/profile",
         title: "پروفایل",
       },
       {
-        href: "/profile/edite",
-        activeRoute: "/profile/edite",
+        href: "/panel/profile/edite",
+        activeRoute: "/panel/profile/edite",
         title: "ویرایش",
       },
     ],

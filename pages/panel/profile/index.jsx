@@ -12,11 +12,24 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { Box } from "@mui/system";
-const Panel = ({ user }) => {
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useApi } from "@/hooks/useApi";
+const Panel = ({ user, url }) => {
   const matches = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const userData = JSON.parse(user);
+  const router = useRouter();
+  const { postHandeled } = useApi({ baseUrl: url });
+  const handleLogout = () => {
+    postHandeled("/user/logout", {}, () => {
+      router.push("/login");
+    });
+  };
   return (
     <Paper sx={{ padding: "20px" }}>
+      <Head>
+        <title>کریپتو ققنوس | حساب کاربری</title>
+      </Head>
       <Box
         sx={{
           display: "flex",
@@ -26,6 +39,7 @@ const Panel = ({ user }) => {
       >
         <Typography>{userData.userName} , خوش آمدید</Typography>
         <Button
+          onClick={handleLogout}
           color="error"
           variant="outlined"
           size={matches ? "small" : "medium"}
@@ -79,6 +93,7 @@ export async function getServerSideProps({ req, res }) {
       return {
         props: {
           user: JSON.stringify(data.data),
+          url: process.env.NEXT_JS_URI_API,
         },
       };
     } else {

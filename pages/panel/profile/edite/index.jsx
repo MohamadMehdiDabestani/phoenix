@@ -24,6 +24,7 @@ import { toggleLoading, toggleSnackBar } from "@/redux/action/Actions";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useApi } from "@/hooks/useApi";
+import Head from "next/head";
 const items = [
   {
     label: "نام کاربری",
@@ -101,6 +102,9 @@ const Edite = ({ user, nexUrl, list }) => {
   console.log("open", formik.values.exchange);
   return (
     <Paper sx={{ padding: "20px" }}>
+      <Head>
+        <title>کریپتو ققنوس | ویرایش حساب کاربری</title>
+      </Head>
       <Loading />
       {formik.values.exchange && open ? (
         <EditeProfileDialogBox url={nexUrl} />
