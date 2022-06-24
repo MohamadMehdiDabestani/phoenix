@@ -2,7 +2,6 @@ import { getCookie, removeCookies } from "cookies-next";
 import axios from "axios";
 import {
   Button,
-  Link,
   List,
   ListItem,
   ListItemButton,
@@ -15,6 +14,7 @@ import { Box } from "@mui/system";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useApi } from "@/hooks/useApi";
+import Link from "next/link";
 const Panel = ({ user, url }) => {
   const matches = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const userData = JSON.parse(user);
