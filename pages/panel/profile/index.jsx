@@ -69,8 +69,10 @@ const Panel = ({ user, url }) => {
           </ListItemButton>
         </ListItem>
       </List>
-      <Link href="/profile/edite">
-        <Button variant="contained">ویرایش</Button>
+      <Link href="/panel/profile/edite">
+        <a>
+          <Button variant="contained">ویرایش</Button>
+        </a>
       </Link>
     </Paper>
   );

@@ -251,7 +251,6 @@ export const GridAnalysis = ({
       )}
       <Paper dir="ltr">
         <DataGrid
-          className="==============================================="
           sx={{
             border: "none",
             "& .MuiDataGrid-cell": {

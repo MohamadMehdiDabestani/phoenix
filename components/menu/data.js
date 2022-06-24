@@ -33,7 +33,7 @@ const list = [
   },
   {
     id: "2",
-    routes: "/profile,/profile/edite",
+    routes: "/panel/profile,/panel/profile/edite",
     title: "حساب کاربری",
     icon: <AccountCircleIcon sx={{ marginRight: "5%" }} />,
     list: [
