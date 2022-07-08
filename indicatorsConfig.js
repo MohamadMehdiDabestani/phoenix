@@ -11,7 +11,7 @@ import { BbandTsi } from "./components/common/builtStrategy/bbandTsi/columns";
 import { ThreeSuperTrend } from "./components/common/builtStrategy/threeSupertrend/columns";
 import { ThreeEma } from "./components/common/builtStrategy/threeEma/columns";
 import { DMI_OBV } from "./components/common/builtStrategy/DMI_OBV/columns";
-import { DMI } from "./components/common/builtStrategy/DMI/columns";
+import { DMI } from "./components/common/DMI/columns";
 import { VwapComponent } from "./components/common/vwap";
 import { VwapColumns } from "./components/common/vwap/column";
 

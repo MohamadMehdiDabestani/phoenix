@@ -1,3 +1,5 @@
+import { SlopeVWAP } from "../cell/SlopeVWAP";
+
 export const VwapColumns = (strategy) => {
   const names = [];
   if (strategy.breake.side === "both") {
@@ -49,5 +51,13 @@ export const VwapColumns = (strategy) => {
       customCell: false,
     });
   }
+  names.push({
+    field: `vwap_way`,
+    label: `شیب خط vwap`,
+    tooltip: strategy.parameters.find((e) => e.name === "length").value,
+    renderCell: (params) => <SlopeVWAP {...params} />,
+    customCell: true,
+    id: 7,
+  });
   return names;
 };

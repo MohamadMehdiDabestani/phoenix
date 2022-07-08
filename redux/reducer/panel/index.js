@@ -54,8 +54,7 @@ export const panelReducer = (state = initialState, action) => {
             tooltip: el.tooltip,
             renderCell: (paramas) => {
               if (el.customCell) {
-                const ind = indicators.find((e) => e.id === el.id);
-                return ind.renderCell(paramas);
+                return el.renderCell(paramas);
               }
               return (
                 <Fragment>
@@ -163,14 +162,14 @@ export const panelReducer = (state = initialState, action) => {
         break;
       }
       case types.SET_ROW: {
-        console.log('set row' , action.payload);
+        console.log("set row", action.payload);
         const existing = draft.rows.find(
           (e) => e.coinName === action.payload.coinName
         );
         if (!existing) {
           draft.rows.push({
             id: draft.rows.length,
-            
+
             ...action.payload,
           });
         }
