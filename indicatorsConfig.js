@@ -14,6 +14,7 @@ import { DMI_OBV } from "./components/common/builtStrategy/DMI_OBV/columns";
 import { DMI } from "./components/common/DMI/columns";
 import { VwapComponent } from "./components/common/vwap";
 import { VwapColumns } from "./components/common/vwap/column";
+import { VWAP_DMI } from "./components/common/builtStrategy/VWAP_DMI/columns";
 
 export const indicators = [
   {
@@ -459,7 +460,7 @@ export const indicators = [
     ],
   },
   {
-    id: 19,
+    id: 15,
     name: "DMI",
     displayName: "دی ام ای",
     parameters: [
@@ -478,7 +479,7 @@ export const indicators = [
     settingsFunc: (strategy) => DMI(strategy),
   },
   {
-    id: 20,
+    id: 16,
     type: "moving",
     isBinding: true,
     component: <VwapComponent />,
@@ -512,7 +513,7 @@ export const indicators = [
     ],
   },
   {
-    id: 15,
+    id: 17,
     type: "",
     isBinding: false,
     name: "bband_tsi",
@@ -524,7 +525,7 @@ export const indicators = [
     parameters: [],
   },
   {
-    id: 16,
+    id: 18,
     type: "",
     isBinding: false,
     name: "threeSupertrend",
@@ -536,7 +537,7 @@ export const indicators = [
     parameters: [],
   },
   {
-    id: 17,
+    id: 19,
     type: "",
     isBinding: false,
     name: "threeEma",
@@ -548,7 +549,7 @@ export const indicators = [
     parameters: [],
   },
   {
-    id: 18,
+    id: 20,
     name: "DMI_OBV",
     displayName: "استراتژی دی ام ای و obv",
     parameters: [],
@@ -558,6 +559,18 @@ export const indicators = [
     isCross: false,
     settings: true,
     settingsFunc: (strategy) => DMI_OBV(strategy),
+  },
+  {
+    id: 20,
+    name: "DMI_OBV",
+    displayName: "استراتژی VWAP و دی ام آی",
+    parameters: [],
+    type: "",
+    isBinding: false,
+    isBreake: false,
+    isCross: false,
+    settings: true,
+    settingsFunc: (strategy) => VWAP_DMI(strategy),
   },
 ];
 export const botStrategy = [
