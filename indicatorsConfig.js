@@ -561,8 +561,8 @@ export const indicators = [
     settingsFunc: (strategy) => DMI_OBV(strategy),
   },
   {
-    id: 20,
-    name: "DMI_OBV",
+    id: 21,
+    name: "VWAP_DMI",
     displayName: "استراتژی VWAP و دی ام آی",
     parameters: [],
     type: "",

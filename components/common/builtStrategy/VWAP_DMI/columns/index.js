@@ -2,13 +2,13 @@ export const VWAP_DMI = () => {
     return [
       {
         field: `VWAP_DMI_short`,
-        label: `خرید`,
+        label: `فروش`,
         tooltip: ``,
         customCell: false,
       },
       {
         field: `VWAP_DMI_long`,
-        label: `فروش`,
+        label: `خرید`,
         tooltip: ``,
         customCell: false,
       },
