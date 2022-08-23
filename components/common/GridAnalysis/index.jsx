@@ -265,10 +265,7 @@ export const GridAnalysis = ({
                 ml: "5px",
               },
             },
-            "& .rtl-column": {
-              justifyContent: "flex-end",
-              direction: "ltr",
-            },
+        
           }}
           initialState={{
             pagination: {

@@ -29,7 +29,7 @@ export async function getServerSideProps({ req, res }) {
     if (!exchangeClient) {
       return {
         redirect: {
-          destination: "/profile/edite?notif=true",
+          destination: "/panel/profile/edite?notif=true",
           permanent: false,
         },
       };

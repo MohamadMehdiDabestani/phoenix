@@ -72,7 +72,6 @@ const Login = () => {
     validationSchema: validationHandler,
     onSubmit: (values) => {
       dispatch(toggleLoading({ show: true, isGlobal: true }));
-
       postHandeled(
         "/api/user/login",
         {

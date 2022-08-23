@@ -18,7 +18,7 @@ export async function getServerSideProps({ res, req }) {
   if (!exchangeClient) {
     return {
       redirect: {
-        destination: "/profile/edite?notif=true",
+        destination: "/panel/profile/edite?notif=true",
         permanent: false,
       },
     };
