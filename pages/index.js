@@ -20,7 +20,7 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import { InfoSection } from "@/components";
 import { ImageSection } from "@/components";
 import { createClient } from "contentful";
-import { blue } from '@mui/material/colors';
+import { blue } from "@mui/material/colors";
 const faqItems = [
   {
     title: "وظیفه ی این ابزار چیه؟",
@@ -56,6 +56,7 @@ const faqItems = [
 const Home = ({ list }) => {
   const dispatch = useDispatch();
   const matches = useMediaQuery((theme) => theme.breakpoints.up("md"));
+  const matchesXS = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -101,7 +102,10 @@ const Home = ({ list }) => {
                     </Link>
                     <Button
                       variant="outlined"
-                      sx={{ marginLeft: "20px" }}
+                      sx={{
+                        marginLeft: "20px",
+                        mt: matchesXS ? "15px" : "0",
+                      }}
                       onClick={handleClick}
                       to="#planes"
                     >
@@ -187,7 +191,10 @@ const Home = ({ list }) => {
                     </Link>
                     <Button
                       variant="outlined"
-                      sx={{ marginLeft: "20px" }}
+                      sx={{
+                        marginLeft: "20px",
+                        mt: matchesXS ? "15px" : "0",
+                      }}
                       onClick={handleClick}
                       to="#planes"
                     >
@@ -260,7 +267,7 @@ const Home = ({ list }) => {
               textAlign: "center",
               margin: "25px 0",
               "& a": {
-                color: blue['A400'],
+                color: blue["A400"],
               },
             }}
             variant="body1"

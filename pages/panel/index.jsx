@@ -3,23 +3,11 @@ import { setCoins } from "@/redux/action/panel/Actions";
 import ccxt from "ccxt";
 import { getCookie } from "cookies-next";
 import { useDispatch } from "react-redux";
-import Router from "next/router";
-import { toggleSnackBar } from "@/redux/action/Actions";
 
-const Panel = ({ apiUrl, coins, nexUrl, error }) => {
+const Panel = ({ apiUrl, coins, nexUrl }) => {
   const dispatch = useDispatch();
-  if (error) {
-    dispatch(
-      toggleSnackBar({
-        message: "ابتدا یک صرافی انتخاب کنید",
-        variant: "standard",
-        severity: "error",
-        show: true,
-      })
-    );
-    Router.push("/profile/edite");
-  }
   dispatch(setCoins(coins));
+
   return <ListCoins apiUrl={apiUrl} nexUrl={nexUrl} />;
 };
 

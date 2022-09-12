@@ -2,14 +2,15 @@ import { Fragment, useEffect, useState } from "react";
 import MenuItemCildren from "./MenuItemCildren";
 import { list } from "./data";
 import { useDispatch, useSelector } from "react-redux";
-import {toggleMenuDashboard} from '../../redux/action/Actions'
+import { toggleMenuDashboard } from "../../redux/action/Actions";
 const MenuItem = () => {
   const open = useSelector((state) => state.menuDashboard);
   const [active, setActive] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleExpand = () => {
+    console.log("location.pathname", location.pathname);
     list.map((el) => {
-      let cehck = el.routes.includes(location.pathname);
+      let cehck = el.routes.split(",").find((e) => e === location.pathname);
       if (cehck) {
         setActive(el.id);
       }
@@ -24,7 +25,7 @@ const MenuItem = () => {
   }, [open]);
   const handleClick = (id) => {
     setActive(id);
-    dispatch(toggleMenuDashboard(true))
+    dispatch(toggleMenuDashboard(true));
   };
   return (
     <Fragment>

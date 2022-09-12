@@ -1,4 +1,4 @@
-import {SlopeADX} from "../cell/SlopeADX";
+import { SlopeDisplay } from "../../SlopeDisplay";
 export const DMI = (indicator) => {
   return [
     {
@@ -11,7 +11,7 @@ export const DMI = (indicator) => {
       field: `ADX_way`,
       label: `شیب خط adx`,
       tooltip: `${indicator.parameters[0].value}`,
-      renderCell: (params) => <SlopeADX {...params}/> ,
+      renderCell: (params) => <SlopeDisplay {...params} field="ADX_way" />,
       customCell: true,
     },
     {

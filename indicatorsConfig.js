@@ -14,9 +14,24 @@ import { DMI_OBV } from "./components/common/builtStrategy/DMI_OBV/columns";
 import { DMI } from "./components/common/DMI/columns";
 import { VwapComponent } from "./components/common/vwap";
 import { VwapColumns } from "./components/common/vwap/column";
+import { Volume } from "./components/common/volume/columns";
 import { VWAP_DMI } from "./components/common/builtStrategy/VWAP_DMI/columns";
 
 export const indicators = [
+  {
+    id: 23,
+    name: "volume",
+    type: "",
+    displayName: "حجم",
+    isBinding: false,
+    isCross: false,
+    isBreake: false,
+    isEnableCross: false,
+    isEnableBreake: false,
+    parameters: [],
+    settingsFunc: (strategy) => Volume(strategy),
+    settings: true,
+  },
   {
     id: 1,
     name: "macd",

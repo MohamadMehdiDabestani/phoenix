@@ -71,6 +71,7 @@ export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
             setAnalys(trendObjs);
           }
           if (res["S&R"]) {
+            console.log("if S&R", res["S&R"]);
             const SandR = [];
             const keys = Object.keys(res["S&R"]);
             keys.map((t) => {
@@ -103,6 +104,17 @@ export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
       );
     }
   }, [selectedCoin.coinName]);
+  console.log("annotations", annotations);
+  console.log(
+    "series=",
+    [
+      {
+        name: "کندل",
+        type: "candlestick",
+        data: candles,
+      },
+    ].concat(analys ? analys : [])
+  );
   return (
     <DialogBox
       title={`سایر اطلاعات تحلیل ارز : ${selectedCoin.coinName}`}
@@ -151,7 +163,7 @@ export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
                       type: "candlestick",
                       data: candles,
                     },
-                  ].concat(analys)}
+                  ].concat(analys ? analys : [])}
                 />
                 {strategy.indicators
                   .filter((ind) => ind.isCustom)
