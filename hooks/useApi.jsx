@@ -56,17 +56,16 @@ export const useApi = ({ baseUrl }) => {
           }
         }
       })
-      .finally(() => fn())
-      .catch(({ response }) => {
-        console.log("response" , response);
-        if (response) {
-          if (response.data.isValidation) {
-            showSnack(response.data.err[0].message);
-          } else {
-            showSnack("مشکی پیش آمده مجدد تلاش کنید");
-          }
+      .catch(({response}) => {
+        console.log("response", response);
+
+        if (response.data.isValidation) {
+          showSnack(response.data.err[0].message);
+        } else {
+          showSnack("مشکی پیش آمده مجدد تلاش کنید");
         }
-      });
+      })
+      .finally(() => fn && fn());
   };
   return { get, getHandeled, postHandeled };
 };

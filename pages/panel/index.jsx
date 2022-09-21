@@ -39,8 +39,13 @@ export async function getServerSideProps({ req, res }) {
       )
         return e;
     });
-    if (exchangeClient == "bybit") {
-      coins.map((c) => `${c}:USDT`);
+    if (!exchange.has.fetchOHLCV) {
+      return {
+        redirect: {
+          destination: "/panel/profile/edite?ex=true",
+          permanent: false,
+        },
+      };
     }
     return {
       props: {

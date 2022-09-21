@@ -4,10 +4,10 @@ export default async function handler(req, res) {
   if (method === "POST") {
     try {
       const body = req.body;
-      const exchange = new ccxt.bybit();
+      const exchange = new ccxt[body.exchange]();
 
       const data = await exchange.fetchOHLCV(
-        body.coin + ":USDT",
+        body.coin,
         body.timeFrame,
         undefined,
         100

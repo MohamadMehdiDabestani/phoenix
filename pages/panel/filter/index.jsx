@@ -1,8 +1,12 @@
 import { FilterComponent } from "@/components";
 import { getCookie } from "cookies-next";
 import Head from "next/head";
-import { Fragment } from "react";
+import ccxt from "ccxt";
+import { Fragment, useEffect } from "react";
 const Filter = ({ apiUrl, nexUrl }) => {
+  useEffect(() => {
+    console.log("bigone", new ccxt.bigone().has);
+  }, []);
   return (
     <Fragment>
       <Head>
@@ -23,6 +27,16 @@ export async function getServerSideProps({ req, res }) {
     return {
       redirect: {
         destination: "/panel/profile/edite?notif=true",
+        permanent: false,
+      },
+    };
+  }
+  const ex = new ccxt[exchangeClient];
+  
+  if (!ex.has.fetchOHLCV) {
+    return {
+      redirect: {
+        destination: "/panel/profile/edite?ex=true",
         permanent: false,
       },
     };

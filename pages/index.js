@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { withoutLayout } from "@/redux/action/Actions";
 import { blueGrey } from "@mui/material/colors";
 import Link from "next/link";
-import { BlogCard, Faq, HomeTable, Nav } from "@/components";
+import { BlogCard, Faq, Nav, Plane } from "@/components";
 import CopyrightIcon from "@mui/icons-material/Copyright";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { InfoSection } from "@/components";
@@ -56,13 +56,12 @@ const faqItems = [
 const Home = ({ list }) => {
   const dispatch = useDispatch();
   const matches = useMediaQuery((theme) => theme.breakpoints.up("md"));
-  const matchesXS = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const matchesXS = useMediaQuery((theme) => theme.breakpoints.only("xs"));
 
   const handleClick = (e) => {
     e.preventDefault();
     const target = e.target.getAttribute("to");
     const location = document.querySelector(target).offsetTop;
-
     window.scrollTo({
       left: 0,
       top: location - 64,
@@ -153,9 +152,8 @@ const Home = ({ list }) => {
                     ققنوس در این بازار بزرگ جهانی موفق شوید
                   </Typography>
                 </Grid>
-                <HomeTable />
+                <Plane />
                 <Faq items={faqItems} />
-
                 <InfoSection
                   gridId="strat"
                   text="شما با چند کلیک ساده میتوانید حساب کاربری ایجاد کرده و شروع به
@@ -238,7 +236,7 @@ const Home = ({ list }) => {
                     ققنوس در این بازار بزرگ جهانی موفق شوید
                   </Typography>
                 </Grid>
-                <HomeTable />
+                <Plane />
                 <Faq items={faqItems} />
                 <ImageSection
                   image="/image/undraw_maker_launch_re_rq81.svg"

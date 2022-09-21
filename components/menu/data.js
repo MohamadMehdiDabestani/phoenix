@@ -33,7 +33,7 @@ const list = [
   },
   {
     id: "2",
-    routes: "/panel/profile,/panel/profile/edite",
+    routes: "/panel/profile,/panel/profile/edite,/panel/profile/transaction",
     title: "حساب کاربری",
     icon: <AccountCircleIcon sx={{ marginRight: "5%" }} />,
     list: [
@@ -46,6 +46,11 @@ const list = [
         href: "/panel/profile/edite",
         activeRoute: "/panel/profile/edite",
         title: "ویرایش",
+      },
+      {
+        href: "/panel/profile/transaction",
+        activeRoute: "/panel/profile/transaction",
+        title: "تراکنش ها",
       },
     ],
   },

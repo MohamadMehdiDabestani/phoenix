@@ -14,17 +14,14 @@ import { IndicatorInput } from "./common/IndicatorInput";
 import { DashboardLayout } from "./common/layout";
 import { Supports } from "./common/Supports/";
 import { DialogBox } from "./common/DialogBox";
-
 import { ListCoins } from "./panel/ListCoins";
 import { MultipleSelect } from "./common/MultipleSelect";
-import { UserInfo } from "./profile/userInfo";
-import { Payment } from "./profile/payment";
 import { GridAnalysis } from "./common/GridAnalysis";
 import { RenderCellSandR } from "./common/Supports/column/renderCell";
 import { FilterComponent } from "./filter";
 import { Chart } from "./common/chart";
 import { Nav } from "./home/nav";
-import { HomeTable } from "./home/table";
+import { Plane } from "./home/planes";
 import { ImageSection } from "./home/section/image";
 import { InfoSection } from "./home/section/info";
 import { BotComponent } from "./bot";
@@ -40,13 +37,11 @@ export {
   Nav,
   ImageSection,
   InfoSection,
-  HomeTable,
   Chart,
   FilterComponent,
   RenderCellSandR,
   GridAnalysis,
-  Payment,
-  UserInfo,
+  
   MultipleSelect,
   ListCoins,
   DialogBox,
@@ -65,4 +60,5 @@ export {
   IndicatorInput,
   DashboardLayout,
   Supports,
+  Plane,
 };

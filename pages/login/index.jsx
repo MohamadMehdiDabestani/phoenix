@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Alert, Button, Grid, Typography } from "@mui/material";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PasswordIcon from "@mui/icons-material/Password";
-// import GoogleIcon from "@mui/icons-material/Google";
 import * as yup from "yup";
 import Link from "next/link";
 import { HomeIconTopLeft, InputForm, Loading } from "@/components";
@@ -93,6 +92,7 @@ const Login = () => {
       );
     },
   });
+
   return (
     <Grid container sx={{ height: "100%" }}>
       <Head>

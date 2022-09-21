@@ -13,6 +13,7 @@ import { BLOCKS } from "@contentful/rich-text-types";
 
 export const BlogCard = ({ post }) => {
   const { image, title, slug, shortText, objectFit, altImage } = post;
+
   const config = {
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node) => {
@@ -20,6 +21,7 @@ export const BlogCard = ({ post }) => {
       },
     },
   };
+
   return (
     <Card>
       <Link href={`/panel/blog/${slug}`}>
@@ -51,8 +53,19 @@ export const BlogCard = ({ post }) => {
       </Link>
 
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {title}
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={(theme) => ({
+            a: {
+              color: theme.palette.text.primary,
+            },
+          })}
+        >
+          <Link href={`/panel/blog/${slug}`}>
+            <a title={title}>{title}</a>
+          </Link>
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {documentToReactComponents(shortText, config)}

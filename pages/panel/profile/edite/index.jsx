@@ -20,7 +20,7 @@ import { InputForm } from "@/components";
 import ccxt from "ccxt";
 import { setCookies, getCookie, removeCookies } from "cookies-next";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLoading, toggleSnackBar } from "@/redux/action/Actions";
+import { toggleDialog, toggleLoading, toggleSnackBar } from "@/redux/action/Actions";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useApi } from "@/hooks/useApi";
@@ -49,6 +49,15 @@ const Edite = ({ user, nexUrl, list }) => {
       dispatch(
         toggleSnackBar({
           message: "ابتدا یک صرافی انتخاب کنید",
+          show: true,
+          severity: "error",
+        })
+      );
+    }
+    if (router.query.ex) {
+      dispatch(
+        toggleSnackBar({
+          message: "لطفا یک صرافی دیگر انتخاب کنید",
           show: true,
           severity: "error",
         })
@@ -99,7 +108,6 @@ const Edite = ({ user, nexUrl, list }) => {
     setCookies("exchange", e.target.value, { expires: dateTime });
   };
   // let coinbasepro = new ccxt[formik.values.exchange]();
-  console.log("open", formik.values.exchange);
   return (
     <Paper sx={{ padding: "20px" }}>
       <Head>
@@ -119,14 +127,14 @@ const Edite = ({ user, nexUrl, list }) => {
         }}
       >
         <Typography>ویرایش حساب کاربری</Typography>
-        {/* {formik.values.exchange && (
+        {formik.values.exchange && (
           <Button
             variant="contained"
             onClick={() => dispatch(toggleDialog(true))}
           >
             احراز هویت صرافی
           </Button>
-        )} */}
+        )}
       </Box>
       <Box sx={{ margin: "35px 0" }} as="form" onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
