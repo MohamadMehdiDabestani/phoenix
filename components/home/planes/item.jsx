@@ -3,14 +3,14 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 import { Box } from "@mui/system";
 
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "@/redux/action/Actions";
 import { Fragment } from "react";
 
 import { useApi } from "@/hooks/useApi";
 export const Item = ({ title, price, options, not, btnType, type }) => {
-  const router = useRouter();
+  // const router = useRouter();
   const dispatch = useDispatch();
   const { postHandeled } = useApi({
     baseUrl: process.env.NEXT_PUBLIC_NEXT_URI_API,

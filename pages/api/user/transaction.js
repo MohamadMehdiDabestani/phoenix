@@ -1,4 +1,4 @@
-import { prisma } from "@/lib";
+// import { prisma } from "@/lib";
 import { validation } from "@/lib";
 export default async function handler(req, res) {
   const { method } = req;
