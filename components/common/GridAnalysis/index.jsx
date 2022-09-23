@@ -209,14 +209,7 @@ export const GridAnalysis = ({
         }
         return true;
       });
-      if (isCustomCoins) {
-        customCoin.slice(0, 6).map((coin) => {
-          postHandeled("/analzer", { strategy, exchange, coin }, ({ data }) => {
-            dispatch(setFilterCoin(JSON.parse(data)));
-            dispatch(toggleLoading({ show: false, isGlobal: false }));
-          });
-        });
-      } else {
+      if (!isCustomCoins) {
         coins.slice(0, 6).map((coin) => {
           postHandeled("/analzer", { strategy, exchange, coin }, ({ data }) => {
             dispatch(setRow(JSON.parse(data)));
@@ -236,12 +229,15 @@ export const GridAnalysis = ({
     } else {
       dispatch(toggleLoading({ show: true, isGlobal: true }));
     }
-    customCoin.slice(0, 6).map((coin) => {
-      postHandeled("/analzer", { strategy, exchange, coin }, ({ data }) => {
-        dispatch(setFilterCoin(JSON.parse(data)));
-        dispatch(toggleLoading({ show: false, isGlobal: false }));
+    if (show) {
+      customCoin.slice(0, 6).map((coin) => {
+        console.log("send req in effect custom coin");
+        postHandeled("/analzer", { strategy, exchange, coin }, ({ data }) => {
+          dispatch(setFilterCoin(JSON.parse(data)));
+          dispatch(toggleLoading({ show: false, isGlobal: false }));
+        });
       });
-    });
+    }
   }, [customCoin]);
   if (show) return <Loading />;
   return (
@@ -265,7 +261,6 @@ export const GridAnalysis = ({
                 ml: "5px",
               },
             },
-        
           }}
           initialState={{
             pagination: {

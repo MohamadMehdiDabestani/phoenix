@@ -13,9 +13,11 @@ import { ThreeEma } from "./components/common/builtStrategy/threeEma/columns";
 import { DMI_OBV } from "./components/common/builtStrategy/DMI_OBV/columns";
 import { DMI } from "./components/common/DMI/columns";
 import { VwapComponent } from "./components/common/vwap";
+import { Base } from "./components/common/base";
 import { VwapColumns } from "./components/common/vwap/column";
 import { Volume } from "./components/common/volume/columns";
 import { VWAP_DMI } from "./components/common/builtStrategy/VWAP_DMI/columns";
+import { BaseColumn } from "./components/common/base/column";
 
 export const indicators = [
   {
@@ -526,6 +528,22 @@ export const indicators = [
         label: "طول",
       },
     ],
+  },
+  {
+    id: 22,
+    type: "",
+    isBinding: false,
+    component: <Base />,
+    name: "base",
+    displayName: "عرضه و تقاضا",
+    isBreake: false,
+    isCross: false,
+    isEnableCross: false,
+    isEnableBreake: false,
+    both: true,
+    settings: true,
+    settingsFunc: (strategy) => BaseColumn(strategy),
+    parameters: [],
   },
   {
     id: 17,

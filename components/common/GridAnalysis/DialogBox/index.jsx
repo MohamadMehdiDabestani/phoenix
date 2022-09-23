@@ -16,6 +16,8 @@ import {
 import { Chart } from "@/components";
 import { useIndicator } from "@/hooks/useIndicator";
 import { toggleDialog } from "@/redux/action/Actions";
+import { v4 as uuidv4 } from "uuid";
+import { setSelectedCoin } from "@/redux/action/panel/Actions";
 export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
   const components = {
     "S&R": RenderCellSandR,
@@ -36,24 +38,29 @@ export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
     if (strategy.indicators && selectedCoin.coinName !== "") {
       setLoading(true);
       postHandeled(
-        `${nexUrl}/coin`,
+        "/coin",
         {
           timeFrame: strategy.timeFrame,
           coin: selectedCoin.coinName,
           exchange,
         },
-        ({ result }) => {
-          setCandles(result);
+        ({ data }) => {
+          const candles = data.map((e) => {
+            return { x: e.slice(0, 1)[0], y: e.slice(1, 5) };
+          });
+          setCandles(candles);
         }
       );
       strategy.indicators = strategy.indicators.filter(
         (i) => i.outside || i.both
       );
+
       postHandeled(
         "/analzer",
         { strategy, exchange, coin: selectedCoin.coinName },
         ({ data }) => {
           const res = JSON.parse(data);
+          console.log("res ============", res);
           setOnylAnalys(res);
           if (res.trendline) {
             const keys = Object.keys(res.trendline);
@@ -71,7 +78,6 @@ export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
             setAnalys(trendObjs);
           }
           if (res["S&R"]) {
-            console.log("if S&R", res["S&R"]);
             const SandR = [];
             const keys = Object.keys(res["S&R"]);
             keys.map((t) => {
@@ -99,11 +105,45 @@ export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
             });
             setAnnotations({ yaxis: SandR });
           }
+          if (res["base"]) {
+            const bases = [];
+            if (res.base.base_sup_precent) {
+              bases.push({
+                id: uuidv4(),
+                y: res.base.base_sup_range[0],
+                y2: res.base.base_sup_range[1],
+                fillColor: "#4b94f3",
+                label: {
+                  text: "تقاضا",
+                  offsetY: 0,
+                  position: "end",
+                },
+              });
+            }
+            if (res.base.base_res_precent) {
+              bases.push({
+                id: uuidv4(),
+                y: res.base.base_res_range[1],
+                y2: res.base.base_res_range[0],
+                fillColor: "#faa84a",
+                label: {
+                  text: "عرضه",
+                  offsetY: 0,
+                  position: "end",
+                },
+              });
+            }
+            setAnnotations({ yaxis: bases });
+          }
           setLoading(false);
         }
       );
     }
   }, [selectedCoin.coinName]);
+  const handleClose = () => {
+    dispatch(setSelectedCoin({ coinName : "" }));
+    dispatch(toggleDialog(false))
+  }
   console.log("annotations", annotations);
   console.log(
     "series=",
@@ -187,7 +227,7 @@ export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
         variant="contained"
         color="error"
         sx={{ display: "block", margin: "10px 0" }}
-        onClick={() => dispatch(toggleDialog(false))}
+        onClick={handleClose}
       >
         خروج
       </Button>

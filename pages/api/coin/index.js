@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         body.coin,
         body.timeFrame,
         undefined,
-        100
+        550
       );
       const result = data.map((e) => {
         return { x: e.slice(0, 1)[0], y: e.slice(1, 5) };
