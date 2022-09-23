@@ -4,11 +4,11 @@ import ccxt from "ccxt";
 import { getCookie } from "cookies-next";
 import { useDispatch } from "react-redux";
 
-const Panel = ({ apiUrl, coins, nexUrl }) => {
+const Panel = ({ apiUrl, coins }) => {
   const dispatch = useDispatch();
   dispatch(setCoins(coins));
 
-  return <ListCoins apiUrl={apiUrl} nexUrl={nexUrl} />;
+  return <ListCoins apiUrl={apiUrl}  />;
 };
 
 export async function getServerSideProps({ req, res }) {
@@ -50,7 +50,6 @@ export async function getServerSideProps({ req, res }) {
     return {
       props: {
         apiUrl: process.env.analyzer,
-        nexUrl: process.env.NEXT_JS_URI_API,
         coins,
       },
     };

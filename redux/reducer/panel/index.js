@@ -7,7 +7,6 @@ import * as types from "@/redux/action/panel/Types";
 import { Box, Button, Tooltip, Typography } from "@mui/material";
 import { Fragment } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { indicators } from "@/indicatorsConfig.js";
 const initialState = {
   columns: [],
   rows: [],

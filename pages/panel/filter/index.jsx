@@ -3,7 +3,7 @@ import { getCookie } from "cookies-next";
 import Head from "next/head";
 import ccxt from "ccxt";
 import { Fragment, useEffect } from "react";
-const Filter = ({ apiUrl, nexUrl }) => {
+const Filter = ({ apiUrl }) => {
   useEffect(() => {
     console.log("bigone", new ccxt.bigone().has);
   }, []);
@@ -16,7 +16,7 @@ const Filter = ({ apiUrl, nexUrl }) => {
           content="ربات معامله گر و سود آور قدرتمند ایرانی در بازار جهانی رمزارز ها"
         />
       </Head>
-      <FilterComponent apiUrl={apiUrl} nexUrl={nexUrl} />
+      <FilterComponent apiUrl={apiUrl} />
     </Fragment>
   );
 };
@@ -31,8 +31,8 @@ export async function getServerSideProps({ req, res }) {
       },
     };
   }
-  const ex = new ccxt[exchangeClient];
-  
+  const ex = new ccxt[exchangeClient]();
+
   if (!ex.has.fetchOHLCV) {
     return {
       redirect: {
@@ -44,7 +44,6 @@ export async function getServerSideProps({ req, res }) {
   return {
     props: {
       apiUrl: process.env.analyzer,
-      nexUrl: process.env.NEXT_JS_URI_API,
     },
   };
 }

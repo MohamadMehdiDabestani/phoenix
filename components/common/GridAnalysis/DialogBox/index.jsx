@@ -18,7 +18,7 @@ import { useIndicator } from "@/hooks/useIndicator";
 import { toggleDialog } from "@/redux/action/Actions";
 import { v4 as uuidv4 } from "uuid";
 import { setSelectedCoin } from "@/redux/action/panel/Actions";
-export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
+export const DialogBoxGrid = ({ apiUrl }) => {
   const components = {
     "S&R": RenderCellSandR,
   };
@@ -141,9 +141,9 @@ export const DialogBoxGrid = ({ apiUrl, nexUrl }) => {
     }
   }, [selectedCoin.coinName]);
   const handleClose = () => {
-    dispatch(setSelectedCoin({ coinName : "" }));
-    dispatch(toggleDialog(false))
-  }
+    dispatch(setSelectedCoin({ coinName: "" }));
+    dispatch(toggleDialog(false));
+  };
   console.log("annotations", annotations);
   console.log(
     "series=",

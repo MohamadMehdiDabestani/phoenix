@@ -9,7 +9,7 @@ import { GridAnalysis } from "@/components/common/GridAnalysis";
 import { SelectCoinList } from "./select";
 import { FilterButton } from "./button";
 
-export const FilterComponent = ({ apiUrl, nexUrl }) => {
+export const FilterComponent = ({ apiUrl}) => {
   const dispatch = useDispatch();
   const [coins, _] = useLocalStorage("coins", {}); // eslint-disable-line
   if (Object.keys(coins).length > 0) {
@@ -46,7 +46,6 @@ export const FilterComponent = ({ apiUrl, nexUrl }) => {
         <Box>
           <GridAnalysis
             apiUrl={apiUrl}
-            nexUrl={nexUrl}
             isCustomCoins={true}
             loadingProps={{ show: true, isGlobal: false }}
           />

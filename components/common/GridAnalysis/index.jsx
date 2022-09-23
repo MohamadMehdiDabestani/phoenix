@@ -25,7 +25,6 @@ import { DialogBoxGrid } from "./DialogBox";
 export const GridAnalysis = ({
   apiUrl,
   isCustomCoins,
-  nexUrl,
   loadingProps,
 }) => {
   const { postHandeled } = useApi({ baseUrl: apiUrl });
@@ -243,7 +242,7 @@ export const GridAnalysis = ({
   return (
     <Fragment>
       {selectedCoin.coinName.length > 0 && (
-        <DialogBoxGrid apiUrl={apiUrl} nexUrl={nexUrl} />
+        <DialogBoxGrid apiUrl={apiUrl}  />
       )}
       <Paper dir="ltr">
         <DataGrid
