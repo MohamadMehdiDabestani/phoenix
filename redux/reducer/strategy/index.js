@@ -7,7 +7,7 @@ const strategyInitialState = {
     type: "default",
     value: [{ timeFrame: "1d", day: 0, hours: 0, minutes: 0 }],
   },
-  chartType: "Heikin Ashi",
+  chartType: "Candle Stick",
   indicators: [
     {
       id: 0,

@@ -13,7 +13,7 @@ export const ChartType = () => {
       <FormControl variant="filled" sx={{ width: "100%" }}>
         <InputLabel>نوع چارت</InputLabel>
         <Select onChange={handleChange} value={chartType}>
-          {["Heikin Ashi", "Candle Stick"].map((el, idx) => (
+          {["Candle Stick" , "Heikin Ashi"].map((el, idx) => (
             <MenuItem value={el} key={idx}>
               {el}
             </MenuItem>
