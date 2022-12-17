@@ -15,7 +15,7 @@ const P = ({ json }) => {
       setTimeout(() => {
         const post = JSON.parse(json);
         router.push(`/panel/blog/${post[0].fields.slug}`);
-      }, [3000]);
+      }, [1500]);
     }
     return function cleanUp() {
       dispatch(withoutLayout(false));

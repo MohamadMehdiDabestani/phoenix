@@ -12,7 +12,6 @@ export const useApi = ({ baseUrl }) => {
       "Access-Control-Allow-Credentials": "true",
     },
   });
-
   const showSnack = (message, severity = "error", variant = "standard") => {
     dispatch(
       toggleSnackBar({

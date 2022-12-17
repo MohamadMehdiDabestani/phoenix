@@ -60,6 +60,7 @@ const items = [
     not: [],
     btnType: "submit",
     type: "contact",
+    isLast:true
   },
 ];
 export const Plane = () => {
